@@ -36,9 +36,9 @@ class Level:
 
         self.background_image = pygame.image.load(join('data', 'maps', 'grass.png')).convert()
         self.bg_width, self.bg_height = self.background_image.get_size()
-        self.minimap = Minimap(self.background_image, self.all_sprites, self.player, self.display_surface)
 
         self.setup(tmx_map)
+        self.minimap = Minimap(self.background_image, self.all_sprites, self.player, self.display_surface)
 
     def setup(self, tmx_map):
         for x, y, surf in tmx_map.get_layer_by_name('BG').tiles():
