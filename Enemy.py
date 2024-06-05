@@ -6,7 +6,7 @@ from StatusEffects import StatusEffects
 
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, collision_sprites, player, timer, power, max_health, health=None):
+    def __init__(self, pos, groups, collision_sprites, player, timer, power, max_health, direction, health=None):
         super().__init__([groups, collision_sprites])
         self.image = pygame.Surface((32, 32))
         self.rect = self.image.get_frect(topleft=pos)
@@ -25,8 +25,9 @@ class Enemy(pygame.sprite.Sprite):
                           my_spritesheet.parse_sprite('12.png')]
 
         self.current_skin = self.sprite_right
+        self.direction = direction
+        self.opposite_direction(self.direction)
         self.image = self.current_skin[1]
-        self.direction = vector(1, 0)
 
         self.player = player
         if health is None:
@@ -83,9 +84,9 @@ class Enemy(pygame.sprite.Sprite):
 
     def opposite_direction(self, direction):
         if direction == vector(0, 1):
-            self.current_skin = self.sprite_down
-        elif direction == vector(0, -1):
             self.current_skin = self.sprite_up
+        elif direction == vector(0, -1):
+            self.current_skin = self.sprite_down
         elif direction == vector(1, 0):
             self.current_skin = self.sprite_left
         elif direction == vector(-1, 0):

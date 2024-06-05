@@ -42,6 +42,18 @@
  <tileset firstgid="144" name="secret" tilewidth="48" tileheight="48" tilecount="1" columns="1">
   <image source="../../graphics/objects/fortune.png" width="48" height="48"/>
  </tileset>
+ <tileset firstgid="145" name="Glasser" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Glasser/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="157" name="Hatter" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Hatter/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="169" name="UglyAngel" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/UglyAngel/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="181" name="Winged" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Winged/texture.png" width="576" height="48"/>
+ </tileset>
  <layer id="6" name="BG" width="30" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

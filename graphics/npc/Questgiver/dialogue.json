@@ -41,7 +41,7 @@
 			"type": "response",
 			"npc_name": "Questgiver",
 			"portrait_id": "neutral",
-			"text": "My first task for you is to explore the world! I think, you could buy one more thread to extend your equipment and earn 10 coins. It will be perfect start! You can an find information about your quest opening QuestBar on the left side of screen.",
+			"text": "My first task for you is to explore the world! I think, you could buy one more thread to extend your equipment and earn 10 coins. It will be perfect start! You can find an information about your quest opening QuestBar on the left side of screen.",
 			"responses": {},
 			"commands": []
 		},
@@ -64,7 +64,7 @@
 			"type": "response",
 			"npc_name": "Questgiver",
 			"portrait_id": "neutral",
-			"text": "Your task is to defeat one of the enemies. However, try your luck first, maybe it will bring you something interesting! You can an find information about your quest opening QuestBar on the left side of screen.",
+			"text": "Your task is to defeat one of the enemies. However, try your luck first, maybe it will bring you something interesting! You can find an information about your quest opening QuestBar on the left side of screen.",
 			"responses": {},
 			"commands": []
 		},
@@ -87,7 +87,7 @@
 			"type": "response",
 			"npc_name": "Questgiver",
 			"portrait_id": "neutral",
-			"text": "I think, that now you are ready to defeat all the enemies of our magical world. However, don't forget to buy some gear to get stronger! You can an find information about your quest opening QuestBar on the left side of screen.",
+			"text": "I think, that now you are ready to defeat all the enemies of our magical world. However, don't forget to buy some gear to get stronger! You can find an information about your quest opening QuestBar on the left side of screen.",
 			"responses": {},
 			"commands": []
 		},
@@ -100,6 +100,32 @@
 
 			},
 			"commands": []
+		},
+		"007": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Nice to meet you again! I hope, you rested well and are ready for new challenges. Would you like to deal with the first task?",
+			"responses": {
+				"Let`s start!": {
+					"next": "008"
+				},
+				"I'm sorry, but I can't help you right now...": {
+					"next": "2000"
+				}
+			},
+			"commands": [
+				"show_tasks"
+			]
+		},
+		"008": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "My first task for you in this location is to collect 12 coins and find a special item - magic fire! You can find an information about your quest opening QuestBar on the left side of screen.",
+			"responses": {
+				}
+			},
+			"commands": []
 		}
 	}
-}

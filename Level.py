@@ -1,6 +1,8 @@
 import pygame.sprite
 
 from Enemy import Enemy
+from Glasser import Glasser
+from Hatter import Hatter
 from NPC import NPC
 from Coin import Coin
 from Fortune import Fortune
@@ -12,7 +14,9 @@ from Sprites import Sprite
 from Player import Player
 from AllSprites import AllSprites
 from GeneralUI import GeneralUI
+from UglyAngel import UglyAngel
 from Wilddog import Wilddog
+from Winged import Winged
 from Zombie import Zombie
 from Draft import Draft
 
@@ -56,11 +60,19 @@ class Level:
             elif obj.name == 'fortune':
                 Fortune((obj.x, obj.y), self.all_sprites, self.collision_sprites, "000", self.player, 1500)
             elif obj.name == 'wilddog':
-                Wilddog((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 45)
+                Wilddog((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 45, vector(1, 0))
             elif obj.name == 'zombie':
-                Zombie((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 120)
+                Zombie((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 120, vector(1, 0))
             elif obj.name == 'draft':
-                Draft((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 70)
+                Draft((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 70, vector(1, 0))
+            elif obj.name == 'ugly_angel':
+                UglyAngel((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 80, vector(1, 0))
+            elif obj.name == 'hatter':
+                Hatter((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 100, vector(0, 1))
+            elif obj.name == 'glasser':
+                Glasser((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 95, vector(0, 1))
+            elif obj.name == 'winged':
+                Winged((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 150, vector(1, 0))
             elif obj.name == 'coin':
                 Coin((obj.x, obj.y), self.all_sprites, self.player)
             else:
