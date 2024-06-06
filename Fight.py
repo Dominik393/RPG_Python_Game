@@ -124,10 +124,55 @@ def create_buttons():
 
     return button1, button2, button3
 
+def attack_animation(player, enemy, display_surface):
+    # Load player and enemy sprites
+    player_spritesheet = SpritesSheet(join('graphics', 'player', f'{player.skin}', 'texture.png'))
+    enemy_spritesheet = SpritesSheet(join(f'graphics/enemies/{enemy.__class__.__name__}/texture.png'))
+    player_right = player_spritesheet.parse_sprite('8.png')
+    enemy_right = enemy_spritesheet.parse_sprite('5.png')
+    player_right = pygame.transform.scale(player_right, (200, 200))
+    enemy_right = pygame.transform.scale(enemy_right, (200, 200))
+
+    # Animate player moving to the right
+    for i in range(0, 100, 10):
+        display_surface.fill((30, 30, 30))
+        display_surface.blit(player_right, (150 + i, 300))
+        display_surface.blit(enemy_right, (WINDOW_WIDTH - 350, 300))
+        pygame.display.flip()
+        pygame.time.wait(100)
+
+    # Animate player moving back to the left
+    for i in range(100, 0, -10):
+        display_surface.fill((30, 30, 30))
+        display_surface.blit(player_right, (150 + i, 300))
+        display_surface.blit(enemy_right, (WINDOW_WIDTH - 350, 300))
+        pygame.display.flip()
+        pygame.time.wait(100)
+
+    # Animate enemy moving to the left
+    for i in range(0, 100, 10):
+        display_surface.fill((30, 30, 30))
+        display_surface.blit(player_right, (150, 300))
+        display_surface.blit(enemy_right, (WINDOW_WIDTH - 350 - i, 300))
+        pygame.display.flip()
+        pygame.time.wait(100)
+
+    # Animate enemy moving back to the right
+    for i in range(100, 0, -10):
+        display_surface.fill((30, 30, 30))
+        display_surface.blit(player_right, (150, 300))
+        display_surface.blit(enemy_right, (WINDOW_WIDTH - 350 - i, 300))
+        pygame.display.flip()
+        pygame.time.wait(100)
+
+
+
+
+
 def fight(enemy, player, dt):
     display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     clock = pygame.time.Clock()
-    background_image = pygame.image.load('graphics/map/background/1.png').convert()
+    background_image = pygame.image.load('graphics/map/background/village.png').convert()
 
     # Create buttons
     buttons = create_buttons()
@@ -170,11 +215,15 @@ def fight(enemy, player, dt):
                         item_buttons = item_buttons_list(player, buttons[2])
                     print('button 3 clicked')
         if did_action:
+            attack_animation(player, enemy, display_surface)
             enemy.fight_ai(player)
             did_action = False
 
 
         display_surface.fill((30, 30, 30))
+
+        # Display background image
+        display_surface.blit(background_image, (0, -350))
 
         # Display player sprite
         display_player(player, display_surface)
