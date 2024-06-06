@@ -146,5 +146,5 @@ class QuestsUI(pygame.sprite.Sprite):
         if mouse_buttons[0]:
             relative_mouse_pos = (mouse_pos[0] - self.bound[0] + self.button_rect.width // 2, (mouse_pos[1] - self.bound[1]))
             if self.button_rect.collidepoint(relative_mouse_pos):
-                self.player.player_data.mouse_click_sound.play()
+                self.player.player_data.sound.mouse_click_sound.play()
                 self.kill()

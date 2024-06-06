@@ -17,7 +17,7 @@ class Questgiver(NPC):
             # award player
             self.player.player_data.quest.rewardPlayer(self.player.player_data)
             self.awarded_player = True
-            if self.player.player_data.quest.quest.toNextLevel:
+            if self.player.player_data.quest.quest.to_next_level:
                 self.player.player_data.up_level()
                 next_dialogue = int(self.current_dialogue) + 1
                 self.current_dialogue = str(next_dialogue).zfill(len(self.current_dialogue))
@@ -33,7 +33,7 @@ class Questgiver(NPC):
 
     def dialogue(self):
         if self.player.player_data.quest and self.player.player_data.quest.isDone(self.player.player_data):
-            self.player.player_data.quest_done_sound.play()
+            self.player.player_data.sound.quest_done_sound.play()
             self.configure_data()
         responses, last_dialogue = super().dialogue()
         response_num = int(last_dialogue)

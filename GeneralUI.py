@@ -50,7 +50,7 @@ class GeneralUI:
         tasks_button_rect = self.quests_icon.get_rect(topleft=(30, 90))
         if tasks_button_rect.collidepoint(mouse_pos):
             if self.quests is None:
-                self.player.player_data.mouse_click_sound.play()
+                self.player.player_data.sound.mouse_click_sound.play()
                 self.create_quests()
             else:
                 self.quests.kill()

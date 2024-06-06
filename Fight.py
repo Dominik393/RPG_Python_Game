@@ -203,7 +203,7 @@ def fight(enemy, player, dt):
                 notification = None
 
         if is_enemy_dead(enemy):
-            player.player_data.fight_win_sound.play()
+            player.player_data.sound.fight_win_sound.play()
             reward_player_fight(player, enemy)
             enemy.destroy()
             return

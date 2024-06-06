@@ -1,4 +1,3 @@
-from ItemType import ItemType
 from PlayerData import available_items
 from Settings import *
 from Spritessheet import SpritesSheet
@@ -6,7 +5,7 @@ from Skills import Skills  # Додано імпорт Skills
 import random
 
 
-def create_character(arrow_sound):
+def create_character(sound):
     font = pygame.font.Font(None, 36)
     input_box = pygame.Rect(WINDOW_WIDTH / 2 - 110, 150, 140, 32)
     color_inactive = pygame.Color('lightskyblue3')
@@ -52,10 +51,10 @@ def create_character(arrow_sound):
                         text += event.unicode
 
                 if event.key == pygame.K_LEFT:
-                    arrow_sound.play()
+                    sound.arrow_sound.play()
                     current_skin = (current_skin - 1) % 8
                 elif event.key == pygame.K_RIGHT:
-                    arrow_sound.play()
+                    sound.arrow_sound.play()
                     current_skin = (current_skin + 1) % 8
 
         # Відображення вікна з назвою

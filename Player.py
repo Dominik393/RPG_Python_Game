@@ -108,15 +108,15 @@ class Player(pygame.sprite.Sprite):
                 self.not_used_skills or self.current_time - self.last_ability_time > 30000):
             if keys[pygame.K_f] and Skills.SPEED_UP in self.player_data.skills:
                 self.activate_speed_boost()
-                self.player_data.skill_activate_sound.play()
+                self.player_data.sound.skill_activate_sound.play()
                 self.update_config()
             elif keys[pygame.K_v] and Skills.INVISIBILITY in self.player_data.skills:
                 self.activate_invisibility()
-                self.player_data.skill_activate_sound.play()
+                self.player_data.sound.skill_activate_sound.play()
                 self.update_config()
             elif keys[pygame.K_s] and Skills.SHRINK in self.player_data.skills:
                 self.shrink_player()
-                self.player_data.skill_small_sound.play()
+                self.player_data.sound.skill_small_sound.play()
                 self.update_config()
 
 
@@ -124,7 +124,7 @@ class Player(pygame.sprite.Sprite):
                 self.not_used_skills or self.current_time - self.last_ability_time > 30000):
             if pygame.mouse.get_pressed()[0]:
                 self.teleport_target = pygame.mouse.get_pos()
-                self.player_data.jump_sound.play()
+                self.player_data.sound.jump_sound.play()
                 self.update_config()
 
         # Телепортація, якщо телепорт-таргет встановлено
@@ -275,13 +275,13 @@ class Player(pygame.sprite.Sprite):
 
         if self.player_data.timer > 0:
             self.player_data.timer = 30000 - (self.current_time - self.last_ability_time)
-            if self.player_data.timer == 0: self.player_data.timer_sound.play()
+            if self.player_data.timer == 0: self.player_data.sound.timer_sound.play()
         else: self.player_data.timer = 0
 
         # Перевірка часу зменшення персонажа
         if self.shrink_timer != 0:
             if pygame.time.get_ticks() - self.shrink_timer > self.shrink_duration:
-                self.player_data.skill_small_sound.play()
+                self.player_data.sound.skill_small_sound.play()
                 self.rect.size = self.original_size  # Повернення до оригінального розміру
                 self.reset_images()  # Відновлення оригінальних зображень
                 self.shrink_timer = 0

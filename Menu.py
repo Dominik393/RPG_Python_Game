@@ -1,13 +1,14 @@
+from GameSound import GameSound
 from Settings import *
 
 class MainMenu:
-    def __init__(self, menu_sound):
+    def __init__(self, sound):
         self.display_surface = pygame.display.get_surface()
         self.image = pygame.Surface((WINDOW_WIDTH, WINDOW_HEIGHT))
         self.rect = self.image.get_rect()
         self.options = ['Start Game', 'Settings', 'Save', 'Exit']
         self.current_option = 0
-        self.menu_sound = menu_sound
+        self.sound = sound
 
     def render(self):
         self.image.fill('black')
@@ -22,10 +23,10 @@ class MainMenu:
     def update(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
-            self.menu_sound.play()
+            self.sound.menu_sound.play()
             self.current_option = (self.current_option - 1) % len(self.options)
         elif keys[pygame.K_DOWN]:
-            self.menu_sound.play()
+            self.sound.menu_sound.play()
             self.current_option = (self.current_option + 1) % len(self.options)
         elif keys[pygame.K_RETURN]:
             return self.options[self.current_option]
