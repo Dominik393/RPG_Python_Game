@@ -76,7 +76,7 @@ def item_buttons_list(player, button):
         item_list_surface.blit(text_surface, text_position)
         # Draw item name to the right of the item amount
         text_position = (text_position[0] + text_surface.get_width() + 10, text_position[1])
-        text_surface = font.render(item.item_type.value[5], True, 'black')
+        text_surface = font.render(item.item_type.name, True, 'black')
         item_list_surface.blit(text_surface, text_position)
 
         buttons.append(Button(button.x, button.y - item_height * (i + 1), item_width, item_height, item.name,

@@ -31,14 +31,14 @@ class QuestsUI(pygame.sprite.Sprite):
                 if npc.__class__.__name__ == 'Questgiver':
                     npc.action()
         else:
-            self.message = "Your quest: " + self.player.player_data.quest.quest.value[1]
-            self.additional_message = self.player.player_data.quest.quest.value[13]
+            self.message = "Your quest: " + self.player.player_data.quest.quest.name
+            self.additional_message = self.player.player_data.quest.quest.text
             self.ui_image = None
-            self.prizeExp = self.player.player_data.quest.quest.value[3]
-            self.prizeCoins = self.player.player_data.quest.quest.value[4]
-            self.prizeHealth = self.player.player_data.quest.quest.value[5]
-            self.prizeEquipment = self.player.player_data.quest.quest.value[6]
-            self.prizeSkills = self.player.player_data.quest.quest.value[7]
+            self.prizeExp = self.player.player_data.quest.quest.prize_exp
+            self.prizeCoins = self.player.player_data.quest.quest.prize_coins
+            self.prizeHealth = self.player.player_data.quest.quest.prize_health
+            self.prizeEquipment = self.player.player_data.quest.quest.prize_equipment
+            self.prizeSkills = self.player.player_data.quest.quest.prize_skills
             self.paragraph = 60
 
             if len(self.prizeEquipment) > 0: self.equipment_paragraph = 60
@@ -112,7 +112,7 @@ class QuestsUI(pygame.sprite.Sprite):
             width = image_width * equipment_amount + step * (equipment_amount - 2)
             start = equipment_text_rect.centerx - width // 2 + step
             for item in self.prizeEquipment:
-                item_image = item.item_type.value[4]
+                item_image = item.item_type.image
                 item_rect = item_image.get_rect(center=(start, equipment_text_rect.centery + 50))
                 self.image.blit(item_image, item_rect)
                 start += (image_width + step)

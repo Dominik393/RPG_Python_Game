@@ -50,7 +50,7 @@ class ShopInventory2UI(pygame.sprite.Sprite):
                     item_rect = item.image.get_rect(center=slot_rect.center)
                     self.image.blit(item.image, item_rect.topleft)
                     if item.amount > 1:
-                        text_surface = self.font.render(str(item.item_type.value[1]) + "$", True, 'black')
+                        text_surface = self.font.render(str(item.item_type.name) + "$", True, 'black')
                         text_position = (
                         slot_rect.right - text_surface.get_width() - 2, slot_rect.bottom - text_surface.get_height())
                         self.image.blit(text_surface, text_position)

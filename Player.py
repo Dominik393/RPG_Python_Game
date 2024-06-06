@@ -17,7 +17,6 @@ class Player(pygame.sprite.Sprite):
 
         self.rect = self.image.get_frect(topleft=pos)
         self.old_rect = self.rect.copy()
-
         self.speed = 250
         self.player_data = player_data
         self.status_effects = StatusEffects()

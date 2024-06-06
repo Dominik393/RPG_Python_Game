@@ -1,8 +1,6 @@
 from enum import Enum
-
-from Settings import *
-
-
+import pygame
+from os.path import join
 class ItemType(Enum):
     # id, price, damage, min_level_to_get, image, name
     SCISSORS = (1, 40, 1, 0, pygame.image.load(join('graphics', 'objects', 'items', 'scissors.png')), "scissors")
@@ -17,3 +15,26 @@ class ItemType(Enum):
     ACID = (10, 75, 3, 15, pygame.image.load(join('graphics', 'objects', 'items', 'acid.png')), "acid")
     SLEEPING_FLOWER = (11, 10, 2, 0, pygame.image.load(join('graphics', 'objects', 'items', 'sleeping_flower.png')), "sleeping flower")
 
+    @property
+    def id(self):
+        return self.value[0]
+
+    @property
+    def price(self):
+        return self.value[1]
+
+    @property
+    def damage(self):
+        return self.value[2]
+
+    @property
+    def min_level_to_get(self):
+        return self.value[3]
+
+    @property
+    def image(self):
+        return self.value[4]
+
+    @property
+    def name(self):
+        return self.value[5]

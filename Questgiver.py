@@ -1,6 +1,7 @@
 from Quests import Quests
 from NPC import NPC
 from Quest import Quest
+from Settings import *
 
 
 class Questgiver(NPC):
@@ -16,7 +17,7 @@ class Questgiver(NPC):
             # award player
             self.player.player_data.quest.rewardPlayer(self.player.player_data)
             self.awarded_player = True
-            if self.player.player_data.quest.quest.value[8]:
+            if self.player.player_data.quest.quest.toNextLevel:
                 self.player.player_data.up_level()
                 next_dialogue = int(self.current_dialogue) + 1
                 self.current_dialogue = str(next_dialogue).zfill(len(self.current_dialogue))

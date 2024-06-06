@@ -69,8 +69,8 @@ class Fortune(NPC):
                 random_element = random.choice(item_types)
                 random_amount = random.randint(1, 5)
                 self.player.player_data.inventory.add_item(Item(random_element, random_amount))
-                message = f"It seems to me, that {random_amount} {random_element.value[5]} will be useful for your missions!"
-                item_icon = random_element.value[4]
+                message = f"It seems to me, that {random_amount} {random_element.name} will be useful for your missions!"
+                item_icon = random_element.image
                 self.upd_data()
             if self.player.player_data.quest is not None and self.player.player_data.quest.quest == Quests.MAGIC_DUEL:
                 self.player.player_data.quest.specific_cond = True
