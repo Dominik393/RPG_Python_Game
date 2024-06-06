@@ -41,18 +41,35 @@ class Minimap:
         # Return the new surface
         return template
 
-
-    def update(self):
+    def display_entities(self, crop_x, crop_y):
         # Create new surface that contains only the player and enemies dots
-
         for sprite in self.all_sprites:
-            sprite_pos = (sprite.rect.x // 2 + WINDOW_WIDTH - self.width - 10, sprite.rect.y // 2 + WINDOW_HEIGHT - self.height - 1)
+            # Adjust the sprite's position based on the cropping rectangle's position
+            sprite_pos = ((sprite.rect.x // 2) - crop_x + WINDOW_WIDTH - self.width // 2 - 10,
+                          (sprite.rect.y // 2) - crop_y + WINDOW_HEIGHT - self.height // 2 - 10)
             if isinstance(sprite, Player):
                 pygame.draw.circle(self.display_surface, 'blue', sprite_pos, 11)
             elif isinstance(sprite, Enemy):
                 pygame.draw.circle(self.display_surface, 'red', sprite_pos, 11)
 
-
     def draw(self):
-        self.display_surface.blit(self.template, (WINDOW_WIDTH - self.width - 10, WINDOW_HEIGHT - self.height - 10))
-        self.update()
+        # Calculate the top-left position of the cropping rectangle
+        crop_x = self.player.rect.x // 2 - self.width // 4
+        crop_y = self.player.rect.y // 2 - self.height // 4
+
+        # Ensure the cropping rectangle is within the bounds of the template
+        crop_x = max(0, min(crop_x, self.width // 2))
+        crop_y = max(0, min(crop_y, self.height // 2))
+
+        # Create the cropping rectangle
+        crop_rect = pygame.Rect(crop_x, crop_y, self.width // 2, self.height // 2)
+
+        # Crop the template
+        subsurface = self.template.subsurface(crop_rect)
+
+        # Blit the cropped template onto the display surface
+        self.display_surface.blit(subsurface,
+                                  (WINDOW_WIDTH - self.width // 2 - 10, WINDOW_HEIGHT - self.height // 2 - 10))
+
+        # Update the minimap
+        self.display_entities(crop_x, crop_y)
