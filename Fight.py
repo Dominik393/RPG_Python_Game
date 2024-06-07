@@ -1,3 +1,5 @@
+import pygame
+
 from Settings import *
 from Spritessheet import SpritesSheet
 from Button import Button
@@ -132,40 +134,80 @@ def attack_animation(player, enemy, display_surface):
     enemy_right = enemy_spritesheet.parse_sprite('5.png')
     player_right = pygame.transform.scale(player_right, (200, 200))
     enemy_right = pygame.transform.scale(enemy_right, (200, 200))
+    background_image = pygame.image.load('graphics/map/background/village.png').convert()
 
-    # Animate player moving to the right
-    for i in range(0, 100, 10):
-        display_surface.fill((30, 30, 30))
-        display_surface.blit(player_right, (150 + i, 300))
-        display_surface.blit(enemy_right, (WINDOW_WIDTH - 350, 300))
+    player_pos = (150 - 4, 300 - 4)
+    enemy_pos = (WINDOW_WIDTH - 350 - 4, 300 - 4)
+
+    surface_width, surface_height = 208, 208
+    player_surface = pygame.Surface((surface_width, surface_height))
+    enemy_surface = pygame.Surface((surface_width, surface_height))
+    player_surface.blit(player_right, (4, 4))
+    enemy_surface.blit(enemy_right, (4, 4))
+
+    move_player_right = True
+    move_player_left = False
+    move_enemy_left = False
+    move_enemy_right = False
+
+
+    while True:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        if move_player_right:
+            player_pos = (player_pos[0] + 2, player_pos[1])
+            background_subsurface = background_image.subsurface((player_pos[0], player_pos[1], surface_width, surface_height))
+            background_subsurface.blit(player_surface, (0, 0))
+            if player_pos[0] >= WINDOW_WIDTH - 750:
+                move_player_right = False
+                move_player_left = True
+                display_health(player, enemy, display_surface)
+        elif move_player_left:
+            player_pos = (player_pos[0] - 2, player_pos[1])
+            background_subsurface = background_image.subsurface((player_pos[0], player_pos[1], surface_width, surface_height))
+            background_subsurface.blit(player_surface, (0, 0))
+            if player_pos[0] <= 150 - 4:
+                move_player_left = False
+                move_enemy_left = True
+        elif move_enemy_left:
+            enemy_pos = (enemy_pos[0] - 2, enemy_pos[1])
+            background_subsurface = background_image.subsurface((enemy_pos[0], enemy_pos[1], surface_width, surface_height))
+            background_subsurface.blit(enemy_surface, (0, 0))
+            if enemy_pos[0] <= 550:
+                move_enemy_left = False
+                move_enemy_right = True
+        elif move_enemy_right:
+            enemy_pos = (enemy_pos[0] + 2, enemy_pos[1])
+            background_subsurface = background_image.subsurface((enemy_pos[0], enemy_pos[1], surface_width, surface_height))
+            background_subsurface.blit(enemy_surface, (0, 0))
+            if enemy_pos[0] >= WINDOW_WIDTH - 350:
+                move_enemy_right = False
+                return
+
+        # Create a subsurface of the background image for player and enemy
+        player_background_subsurface = background_image.subsurface(
+            pygame.Rect(player_pos[0], player_pos[1] + 350, surface_width, surface_height))
+        enemy_background_subsurface = background_image.subsurface(
+            pygame.Rect(enemy_pos[0], enemy_pos[1] + 350, surface_width, surface_height))
+
+        # Blit the subsurface onto the player and enemy surfaces
+        player_surface.blit(player_background_subsurface, (0, 0))
+        enemy_surface.blit(enemy_background_subsurface, (0, 0))
+
+        # Blit player and enemy onto their surfaces
+        player_surface.blit(player_right, (4, 4))
+        enemy_surface.blit(enemy_right, (4, 4))
+
+        # Blit the player and enemy surfaces onto the display surface at the new positions
+        display_surface.blit(player_surface, player_pos)
+        display_surface.blit(enemy_surface, enemy_pos)
+
         pygame.display.flip()
-        pygame.time.wait(100)
-
-    # Animate player moving back to the left
-    for i in range(100, 0, -10):
-        display_surface.fill((30, 30, 30))
-        display_surface.blit(player_right, (150 + i, 300))
-        display_surface.blit(enemy_right, (WINDOW_WIDTH - 350, 300))
-        pygame.display.flip()
-        pygame.time.wait(100)
-
-    # Animate enemy moving to the left
-    for i in range(0, 100, 10):
-        display_surface.fill((30, 30, 30))
-        display_surface.blit(player_right, (150, 300))
-        display_surface.blit(enemy_right, (WINDOW_WIDTH - 350 - i, 300))
-        pygame.display.flip()
-        pygame.time.wait(100)
-
-    # Animate enemy moving back to the right
-    for i in range(100, 0, -10):
-        display_surface.fill((30, 30, 30))
-        display_surface.blit(player_right, (150, 300))
-        display_surface.blit(enemy_right, (WINDOW_WIDTH - 350 - i, 300))
-        pygame.display.flip()
-        pygame.time.wait(100)
-
-
+        pygame.time.wait(1)
 
 
 
@@ -220,8 +262,6 @@ def fight(enemy, player, dt):
             did_action = False
 
 
-        display_surface.fill((30, 30, 30))
-
         # Display background image
         display_surface.blit(background_image, (0, -350))
 
@@ -231,7 +271,7 @@ def fight(enemy, player, dt):
         # Display enemy sprite
         display_enemy(enemy, display_surface)
 
-        # Display squares above player and enemy
+        # Display bars for player and enemy health
         display_health(player, enemy, display_surface)
 
         # Draw buttons
