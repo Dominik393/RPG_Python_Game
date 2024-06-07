@@ -1,5 +1,6 @@
 import pygame
 
+from LevelUpUI import LevelUpUI
 from Skills import Skills
 from PlayerData import PlayerData
 from Settings import *
@@ -345,3 +346,7 @@ class Player(pygame.sprite.Sprite):
         self.sprite_left = self.original_images["left"].copy()
         self.sprite_right = self.original_images["right"].copy()
         self.sprite_up = self.original_images["up"].copy()
+
+    def up_level_UI(self):
+        self.level_UI = LevelUpUI(self.groups()[0], self)
+

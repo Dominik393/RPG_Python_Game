@@ -2,22 +2,23 @@ from Settings import *
 from os.path import join
 
 
-class FortuneUI(pygame.sprite.Sprite):
-    def __init__(self, groups, player, fortune, message, item_icon=None):
+class LevelUpUI(pygame.sprite.Sprite):
+    def __init__(self, groups, player):
         super().__init__(groups)
         self.player = player
-        self.fortune = fortune
         self.font = pygame.font.Font(None, 36)
-        self.message = message  # Зберігаємо текст повідомлення
-        self.item_icon = item_icon  # Зберігаємо зображення предмета
 
-        # Збільшуємо ширину вікна та розміщуємо по центру екрану відносно гравця
-        self.image = pygame.Surface((WINDOW_WIDTH * 0.7, WINDOW_HEIGHT * 0.7))
-        self.image.fill('white')
+        # Завантажуємо зображення фону
+        self.background_image = pygame.image.load(join('graphics', 'objects', 'level_up.png')).convert_alpha()
+
+        # Змінюємо розмір зображення фону під розмір вікна
+        self.background_image = pygame.transform.scale(self.background_image, (WINDOW_WIDTH * 0.7, WINDOW_HEIGHT * 0.7))
+
+        self.image = pygame.Surface((WINDOW_WIDTH * 0.7, WINDOW_HEIGHT * 0.7), pygame.SRCALPHA)
+        self.image.blit(self.background_image, (0, 0))
         self.rect = self.image.get_rect(center=(self.player.rect.centerx, self.player.rect.centery))
         self.bound = ((WINDOW_WIDTH - WINDOW_WIDTH * 0.7) // 2, (WINDOW_HEIGHT - WINDOW_HEIGHT * 0.7) // 2)
 
-        # Створюємо кнопку
         self.button_font = pygame.font.Font(None, 24)
         self.button_text = self.button_font.render('Close', True, (255, 255, 255))
         self.button_image = pygame.Surface((100, 50))
@@ -29,21 +30,7 @@ class FortuneUI(pygame.sprite.Sprite):
         self.item_rect = None
 
     def render(self):
-        self.image.fill('white')
-
-        # Якщо передано зображення предмета, відобразимо його
-        if self.item_icon:
-            self.item_rect = self.item_icon.get_rect(
-                center=(self.image.get_width() // 2, self.image.get_height() - self.image.get_height() // 3))
-            self.image.blit(self.item_icon, self.item_rect)
-
-        # Відображення повідомлення
-        text_surface = self.font.render(self.message, True, (0, 0, 0))
-        text_rect = text_surface.get_rect(center=(self.image.get_width() // 2, self.image.get_height() // 2))
-        self.image.blit(text_surface, text_rect)
-
-        # Відображення кнопки
-        self.image.blit(self.button_image, self.button_rect)
+        self.image.blit(self.background_image, (0, 0))  # Відображаємо фон
 
     def update(self, dt):
         self.input()
@@ -57,4 +44,5 @@ class FortuneUI(pygame.sprite.Sprite):
             relative_mouse_pos = (mouse_pos[0] - self.bound[0] + self.button_rect.width // 2, (mouse_pos[1] - self.bound[1]))
             if self.button_rect.collidepoint(relative_mouse_pos):
                 self.player.player_data.sound.mouse_click_sound.play()
+                self.player.player_data.up_level()
                 self.kill()

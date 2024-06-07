@@ -74,6 +74,7 @@ class Fortune(NPC):
                 self.upd_data()
             if self.player.player_data.quest is not None and self.player.player_data.quest.quest == Quests.MAGIC_DUEL:
                 self.player.player_data.quest.specific_cond = True
+        print(self.groups, self.player)
         self.FortuneUI = FortuneUI(self.groups, self.player, self, message, item_icon)
 
     def upd_data(self):

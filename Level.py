@@ -72,7 +72,7 @@ class Level:
             elif obj.name == 'glasser':
                 Glasser((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 95, vector(0, 1))
             elif obj.name == 'winged':
-                Winged((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 150, vector(1, 0))
+                Winged((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 2, 150, vector(0, 1))
             elif obj.name == 'coin':
                 Coin((obj.x, obj.y), self.all_sprites, self.player)
             else:

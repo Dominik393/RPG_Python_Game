@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="15" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="184">
+ <tileset firstgid="1" name="Questgiver" tilewidth="48" tileheight="48" tilecount="3" columns="3">
+  <image source="../../graphics/npc/Questgiver/texture.png" width="144" height="48"/>
+ </tileset>
+ <tileset firstgid="4" name="Fortune" tilewidth="48" tileheight="48" tilecount="3" columns="3">
+  <image source="../../graphics/npc/Fortune/texture.png" width="144" height="48"/>
+ </tileset>
+ <tileset firstgid="7" name="Shopkeeper" tilewidth="48" tileheight="48" tilecount="3" columns="3">
+  <image source="../../graphics/npc/Shopkeeper/texture.png" width="144" height="48"/>
+ </tileset>
+ <tileset firstgid="10" name="Informator" tilewidth="48" tileheight="48" tilecount="3" columns="3">
+  <image source="../../graphics/npc/Informator/texture.png" width="144" height="48"/>
+ </tileset>
+ <tileset firstgid="13" name="Player" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/player/1/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="25" name="Draft" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Draft/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="37" name="Wilddog" tilewidth="32" tileheight="32" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Wilddog/texture.png" width="384" height="32"/>
+ </tileset>
+ <tileset firstgid="49" name="Zombie" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Zombie/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="61" name="tileset" tilewidth="64" tileheight="64" tilecount="72" columns="12">
+  <image source="tileset.png" width="768" height="384"/>
+ </tileset>
+ <tileset firstgid="133" name="Coins" tilewidth="48" tileheight="48" tilecount="8" columns="8">
+  <image source="../../graphics/objects/coins/texture.png" width="384" height="48"/>
+ </tileset>
+ <tileset firstgid="141" name="ask" tilewidth="48" tileheight="48" tilecount="1" columns="1">
+  <image source="../../graphics/objects/ask.png" width="48" height="48"/>
+ </tileset>
+ <tileset firstgid="142" name="shop" tilewidth="48" tileheight="48" tilecount="1" columns="1">
+  <image source="../../graphics/objects/shop.png" width="48" height="48"/>
+ </tileset>
+ <tileset firstgid="143" name="info" tilewidth="48" tileheight="48" tilecount="1" columns="1">
+  <image source="../../graphics/objects/info.png" width="48" height="48"/>
+ </tileset>
+ <tileset firstgid="144" name="secret" tilewidth="48" tileheight="48" tilecount="1" columns="1">
+  <image source="../../graphics/objects/fortune.png" width="48" height="48"/>
+ </tileset>
+ <tileset firstgid="145" name="Glasser" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Glasser/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="157" name="Hatter" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Hatter/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="169" name="UglyAngel" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/UglyAngel/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="181" name="Winged" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Winged/texture.png" width="576" height="48"/>
+ </tileset>
+ <layer id="6" name="BG" width="30" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,74,0,64,65,66,0,98,0,64,65,65,65,65,65,65,65,65,65,65,66,0,98,0,64,65,66,0,74,0,
+0,74,0,76,77,78,0,110,0,76,77,77,77,77,77,77,77,77,77,77,78,0,110,0,76,77,78,0,74,0,
+0,74,0,76,77,78,0,110,0,76,3221225568,89,89,89,89,89,89,89,89,71,78,0,110,0,76,77,78,0,74,0,
+0,74,0,76,77,78,0,110,0,76,78,0,0,0,0,0,0,0,0,76,78,0,110,0,76,77,78,0,74,0,
+0,74,0,76,77,78,0,110,0,76,78,0,74,74,74,74,74,74,0,76,78,0,110,0,76,77,78,0,74,0,
+0,74,0,76,77,78,0,110,0,76,78,0,74,74,74,74,74,74,0,76,78,0,110,0,76,77,78,0,74,0,
+0,74,0,76,77,78,0,110,0,76,78,0,74,0,0,0,0,74,0,76,78,0,110,0,76,77,78,0,74,0,
+0,74,0,76,77,78,0,110,0,76,3221225543,65,65,65,65,65,65,65,65,96,78,0,110,0,76,77,78,0,74,0,
+0,74,0,76,77,78,0,110,0,76,3221225568,89,89,89,89,89,89,89,89,71,78,0,110,0,76,77,78,0,74,0,
+0,74,0,76,77,78,0,0,0,76,78,0,0,0,0,0,0,0,0,76,78,0,0,0,76,77,78,0,74,0,
+0,74,0,76,77,3221225543,65,65,65,96,78,0,74,74,74,74,74,74,0,76,3221225543,65,65,65,96,77,78,0,74,0,
+0,74,0,76,77,77,77,77,77,77,78,0,74,74,74,74,74,74,0,76,77,77,77,77,77,77,78,0,74,0,
+0,74,0,88,89,89,89,89,89,89,90,0,74,74,74,74,74,74,0,88,89,89,89,89,89,89,90,0,74,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="7" name="Terrain" width="30" height="15">
+  <data encoding="csv">
+61,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,62,63,
+73,0,74,0,0,0,97,0,99,0,0,0,0,0,0,0,0,0,0,0,0,97,0,99,0,0,0,74,0,75,
+73,0,74,0,0,0,109,0,111,0,0,0,0,0,0,0,0,0,0,0,0,109,0,111,0,0,0,74,0,75,
+73,0,74,0,0,0,109,0,111,0,0,0,0,0,0,0,0,0,0,0,0,109,0,111,0,0,0,74,0,75,
+73,0,74,0,0,0,109,0,111,0,0,74,74,74,74,74,74,74,74,0,0,109,0,111,0,0,0,74,0,75,
+73,0,74,0,0,141,109,0,111,0,0,74,61,62,62,62,62,63,74,0,0,109,0,111,0,0,0,74,0,75,
+73,0,74,0,0,0,109,0,111,0,0,74,85,86,86,86,86,87,74,0,0,109,0,111,0,0,0,74,0,75,
+73,0,74,0,0,0,109,0,111,0,0,74,142,74,74,74,74,144,74,0,0,109,0,111,0,0,0,74,0,75,
+73,0,74,0,0,0,109,0,111,0,0,0,0,0,0,0,0,0,0,0,0,109,0,111,0,0,0,74,0,75,
+73,0,74,0,0,0,109,0,111,0,0,0,0,0,0,0,0,0,0,0,0,109,0,111,0,0,0,74,0,75,
+73,0,74,0,0,0,121,122,123,0,0,74,74,74,74,74,74,74,74,0,0,121,122,123,0,0,0,74,0,75,
+73,74,74,0,0,0,0,0,0,0,0,74,61,62,62,62,62,63,74,0,0,0,0,0,0,0,0,74,0,75,
+73,74,74,0,143,0,0,0,0,0,0,74,85,86,86,86,86,87,74,0,0,0,0,0,0,0,0,74,0,75,
+73,74,74,0,0,0,0,0,0,0,0,74,0,0,0,0,0,0,74,0,0,0,0,0,0,0,0,74,0,75,
+85,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,86,87
+</data>
+ </layer>
+ <objectgroup id="2" name="Objects">
+  <object id="11" name="Tree" gid="129" x="966.501" y="428.499" width="64" height="64"/>
+  <object id="18" name="Tree" gid="117" x="859.001" y="368.666" width="64" height="64"/>
+  <object id="20" name="Tree" gid="129" x="768.167" y="391.333" width="64" height="64"/>
+  <object id="23" name="Tree" gid="105" x="822.167" y="393.5" width="64" height="64"/>
+  <object id="28" name="player" gid="13" x="215" y="179" width="48" height="48"/>
+  <object id="31" name="wilddog" gid="43" x="210.667" y="625.333" width="32" height="32"/>
+  <object id="49" name="shopkeeper" gid="7" x="768.667" y="541.666" width="48" height="48"/>
+  <object id="50" name="questgiver" gid="1" x="319.25" y="413.833" width="48" height="48"/>
+  <object id="51" name="fortune" gid="4" x="1088.92" y="539.667" width="48" height="48"/>
+  <object id="52" name="informator" gid="10" x="256.167" y="860.5" width="48" height="48"/>
+  <object id="53" name="tree" gid="129" x="1083.67" y="370.667" width="64" height="64"/>
+  <object id="54" name="tree" gid="129" x="997.667" y="374.667" width="64.5" height="59.5"/>
+  <object id="57" name="zombie" gid="56" x="1332" y="805" width="48" height="48"/>
+  <object id="79" name="coin" gid="140" x="218.334" y="381.333" width="48" height="48"/>
+  <object id="81" name="coin" gid="140" x="818" y="605.667" width="48" height="48"/>
+  <object id="82" name="coin" gid="140" x="613.334" y="424.001" width="48" height="48"/>
+  <object id="84" name="coin" gid="140" x="1230.67" y="643.334" width="48" height="48"/>
+  <object id="85" name="coin" gid="140" x="1051.66" y="605.667" width="48" height="48"/>
+  <object id="90" name="draft" gid="32" x="952.33" y="575.667" width="48" height="48"/>
+  <object id="103" name="tree" gid="129" x="910.33" y="375" width="64" height="64"/>
+  <object id="104" name="tree" gid="129" x="954.333" y="372.667" width="64" height="64"/>
+  <object id="106" name="tree" gid="105" x="879.167" y="415.499" width="64" height="64"/>
+  <object id="107" name="coin" gid="140" x="1563.52" y="487.394" width="48" height="48"/>
+  <object id="108" name="coin" gid="140" x="1262.67" y="421.333" width="48" height="48"/>
+  <object id="109" name="coin" gid="140" x="218" y="588" width="48" height="48"/>
+  <object id="110" name="coin" gid="140" x="311.666" y="497.334" width="48" height="48"/>
+  <object id="111" name="hatter" gid="157" x="618" y="224.667" width="48" height="48"/>
+  <object id="113" name="wilddog" gid="43" x="706.667" y="612.667" width="32" height="32"/>
+  <object id="115" name="glasser" gid="155" x="1255" y="789.333" width="48" height="48"/>
+  <object id="116" name="Tree" gid="129" x="838.252" y="427.166" width="64" height="64"/>
+  <object id="117" name="Tree" gid="105" x="1018.09" y="418.999" width="64" height="64"/>
+  <object id="119" name="tree" gid="129" x="1080.41" y="410.833" width="64" height="64"/>
+  <object id="122" name="Tree" gid="117" x="789.333" y="429.333" width="64" height="64"/>
+  <object id="123" name="Tree" gid="117" x="798.667" y="361.333" width="64" height="64"/>
+  <object id="124" name="Tree" gid="129" x="1042.67" y="377.333" width="64" height="64"/>
+  <object id="126" name="tree" gid="129" x="1055.67" y="433.333" width="64" height="64"/>
+  <object id="127" name="tree" gid="129" x="911.665" y="430.667" width="64.5" height="59.5"/>
+  <object id="128" name="wilddog" gid="43" x="1146.33" y="229.333" width="32" height="32"/>
+  <object id="146" name="Tree" gid="129" x="970.582" y="812.166" width="64" height="64"/>
+  <object id="147" name="Tree" gid="117" x="863.082" y="752.333" width="64" height="64"/>
+  <object id="148" name="Tree" gid="129" x="772.249" y="775" width="64" height="64"/>
+  <object id="149" name="Tree" gid="105" x="826.249" y="777.167" width="64" height="64"/>
+  <object id="150" name="tree" gid="129" x="1087.75" y="754.334" width="64" height="64"/>
+  <object id="151" name="tree" gid="129" x="1001.75" y="758.334" width="64.5" height="59.5"/>
+  <object id="152" name="tree" gid="129" x="914.412" y="758.667" width="64" height="64"/>
+  <object id="153" name="tree" gid="129" x="958.414" y="756.334" width="64" height="64"/>
+  <object id="154" name="tree" gid="105" x="883.249" y="799.166" width="64" height="64"/>
+  <object id="155" name="Tree" gid="129" x="842.333" y="810.833" width="64" height="64"/>
+  <object id="156" name="Tree" gid="105" x="1022.17" y="802.666" width="64" height="64"/>
+  <object id="157" name="tree" gid="129" x="1084.49" y="794.5" width="64" height="64"/>
+  <object id="158" name="Tree" gid="117" x="793.414" y="813" width="64" height="64"/>
+  <object id="159" name="Tree" gid="117" x="802.749" y="745" width="64" height="64"/>
+  <object id="160" name="Tree" gid="129" x="1046.75" y="761" width="64" height="64"/>
+  <object id="161" name="tree" gid="129" x="1059.75" y="817" width="64" height="64"/>
+  <object id="162" name="tree" gid="129" x="915.746" y="814.334" width="64.5" height="59.5"/>
+  <object id="163" name="wilddog" gid="43" x="1671.52" y="628.485" width="32" height="32"/>
+  <object id="164" name="winged" gid="181" x="1573" y="181" width="48" height="48"/>
+  <object id="165" name="ugly_angel" gid="176" x="845.333" y="145.333" width="48" height="48"/>
+  <object id="166" name="coin" gid="140" x="636" y="638.667" width="48" height="48"/>
+  <object id="167" name="coin" gid="140" x="837.837" y="204" width="48" height="48"/>
+  <object id="168" name="coin" gid="140" x="1071.5" y="204" width="48" height="48"/>
+  <object id="175" name="coin" gid="140" x="1236" y="141.333" width="48" height="48"/>
+  <object id="176" name="coin" gid="140" x="642.667" y="141.333" width="48" height="48"/>
+  <object id="177" name="coin" gid="140" x="624.667" y="857.333" width="48" height="48"/>
+  <object id="178" name="coin" gid="140" x="1259.67" y="861.333" width="48" height="48"/>
+  <object id="179" name="coin" gid="140" x="1650.36" y="381.576" width="48" height="48"/>
+  <object id="180" name="coin" gid="140" x="1651.97" y="785.303" width="48" height="48"/>
+  <object id="181" name="coin" gid="140" x="223.333" y="757.455" width="48" height="48"/>
+  <object id="182" name="coin" gid="140" x="465" y="774" width="48" height="48"/>
+  <object id="183" name="coin" gid="140" x="1423.5" y="769.5" width="48" height="48"/>
+ </objectgroup>
+</map>

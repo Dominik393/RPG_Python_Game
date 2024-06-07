@@ -9,6 +9,8 @@ from Inventory import Inventory
 from EntityData import EntityData
 from EntityData import EntityData
 from BattleSkill import *
+from LevelUpUI import LevelUpUI
+
 
 available_items = {
     0: [ItemType.SCISSORS, ItemType.HAMMER, ItemType.POISONOUS_SNAIL],
@@ -38,6 +40,7 @@ class PlayerData(EntityData):
         self.exp = 0
         self.itemset = itemset
         self.sound = sound
+        self.level_UI = None
 
 
         # Player can earn coins only by collecting coins on map, speaking with Fortune and winning enemies
@@ -57,7 +60,6 @@ class PlayerData(EntityData):
         for item in available_items[self.itemset - 1]: self.inventory.add_item(Item(item, 3))
 
         self.skills.add(list(Skills)[(self.itemset - 1) % len(Skills)])
-
     def up_level(self):
         self.earned_coins_total += self.earned_coins_level
         self.enemies_won_total += self.enemies_won_level

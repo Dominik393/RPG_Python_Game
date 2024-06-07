@@ -18,9 +18,10 @@ class Questgiver(NPC):
             self.player.player_data.quest.rewardPlayer(self.player.player_data)
             self.awarded_player = True
             if self.player.player_data.quest.quest.to_next_level:
-                self.player.player_data.up_level()
+                self.player.up_level_UI()
                 next_dialogue = int(self.current_dialogue) + 1
                 self.current_dialogue = str(next_dialogue).zfill(len(self.current_dialogue))
+                print(self.current_dialogue)
 
             self.player.player_data.quest = None
 

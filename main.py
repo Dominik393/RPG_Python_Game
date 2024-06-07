@@ -21,7 +21,8 @@ class Game:
 
         self.player_data = None
         self.tmx_maps = {1: load_pygame(join('data', 'maps', 'level1.tmx')),
-                         2: load_pygame(join('data', 'maps', 'level2.tmx'))}
+                         2: load_pygame(join('data', 'maps', 'level2.tmx')),
+                         3: load_pygame(join('data', 'maps', 'level3.tmx'))}
 
         self.current_stage = None
 
