@@ -8,7 +8,7 @@ class NPC(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, current_dialogue, player, timer):
         super().__init__([groups, collision_sprites])
         self.groups = groups
-        self.image = pygame.Surface((48, 56))
+        self.image = pygame.Surface((38, 50))
         # self.image.fill('red')
         self.rect = self.image.get_frect(topleft=pos)
 
