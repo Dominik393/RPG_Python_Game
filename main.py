@@ -69,6 +69,10 @@ class Game:
             if self.player_data.level != level:
                 self.fade_to_black()
                 level = self.player_data.level
+                # only 3 levels at this time available
+                if level == 4:
+                    pygame.quit()
+                    sys.exit()
                 self.current_stage = Level(self.tmx_maps[level], player_name, self.current_skin + 1, self.player_data)
                 pygame.display.update()
                 pygame.time.delay(100)  # Залишаємо екран чорним на короткий час
