@@ -17,6 +17,13 @@ class Item:
         if self.amount > 0:
             self.amount -= 1
             return True
+
+        return False
+
+    def use(self, player, enemy):
+        if self.decrease_amount():
+            enemy.enemy_data.reduce_health(self.item_type.value[2])
+            return True
         return False
 
     def increase_amount(self, amount = 1):

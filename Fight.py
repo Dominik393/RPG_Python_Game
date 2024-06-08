@@ -82,7 +82,7 @@ def item_buttons_list(player, button):
         item_list_surface.blit(text_surface, text_position)
 
         buttons.append(Button(button.x, button.y - item_height * (i + 1), item_width, item_height, item.name,
-                              (10, 120, 255)))
+                              (10, 120, 255), function=item.use))
         buttons[-1].set_surface(item_list_surface)
 
     return buttons
@@ -150,6 +150,9 @@ def attack_animation(player, enemy, display_surface):
     move_enemy_left = False
     move_enemy_right = False
 
+    pygame.draw.rect(display_surface, 'black', (0, WINDOW_HEIGHT - 150, WINDOW_WIDTH, WINDOW_HEIGHT))
+    display_surface.blit(background_image, (0, -350))
+    pygame.display.flip()
 
     while True:
 
@@ -210,6 +213,29 @@ def attack_animation(player, enemy, display_surface):
         pygame.time.wait(1)
 
 
+def draw_everything(player, enemy, display_surface, background_image, buttons, item_buttons=None, skill_buttons=None):
+    display_surface.blit(background_image, (0, -350))
+
+    pygame.draw.rect(display_surface, 'black', (0, WINDOW_HEIGHT - 150, WINDOW_WIDTH, WINDOW_HEIGHT))
+
+    display_player(player, display_surface)
+
+    display_enemy(enemy, display_surface)
+
+    display_health(player, enemy, display_surface)
+
+    for button in buttons:
+        button.draw(display_surface, 1)
+
+    if item_buttons:
+        for button in item_buttons:
+            button.draw(display_surface)
+
+    if skill_buttons:
+        for button in skill_buttons:
+            button.draw(display_surface)
+
+    pygame.display.flip()
 
 def fight(enemy, player, dt):
     display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -239,6 +265,13 @@ def fight(enemy, player, dt):
                         if button.is_over(pos):
                             button.use_function(player, enemy)
                             did_action = True
+                            skill_buttons = None
+                if item_buttons:
+                    for button in item_buttons:
+                        if button.is_over(pos):
+                            button.use_function(player, enemy)
+                            did_action = True
+                            item_buttons = None
                 if buttons[0].is_over(pos):
                     if player_attack(player, enemy):
                         enemy.kill()
@@ -264,6 +297,9 @@ def fight(enemy, player, dt):
 
         # Display background image
         display_surface.blit(background_image, (0, -350))
+
+        # Fill lower part of the screen with black
+        pygame.draw.rect(display_surface, 'black', (0, WINDOW_HEIGHT - 150, WINDOW_WIDTH, WINDOW_HEIGHT))
 
         # Display player sprite
         display_player(player, display_surface)
