@@ -1,8 +1,6 @@
 import pygame.freetype
 import pygame.image
 from os.path import join
-
-from LevelUpUI import LevelUpUI
 from QuestsUI import QuestsUI
 from Settings import *
 from InventoryUI import InventoryUI

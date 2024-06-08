@@ -20,8 +20,7 @@ class Questgiver(NPC):
             if self.player.player_data.quest.quest.to_next_level:
                 self.player.up_level_UI()
                 next_dialogue = int(self.current_dialogue) + 1
-                self.current_dialogue = str(next_dialogue).zfill(len(self.current_dialogue))
-                print(self.current_dialogue)
+                self.player.player_data.last_questgiver_dialogue = str(next_dialogue).zfill(len(self.current_dialogue))
 
             self.player.player_data.quest = None
 
@@ -31,6 +30,7 @@ class Questgiver(NPC):
             self.started_quest = False
             next_dialogue = int(self.current_dialogue) + 1
             self.current_dialogue = str(next_dialogue).zfill(len(self.current_dialogue))
+            self.player.player_data.last_questgiver_dialogue = self.current_dialogue
 
     def dialogue(self):
         if self.player.player_data.quest and self.player.player_data.quest.isDone(self.player.player_data):
@@ -44,6 +44,7 @@ class Questgiver(NPC):
             if not self.started_quest:
                 self.player.player_data.quest = Quest(self.player.player_data, list(Quests)[self.quest_id])
                 self.current_dialogue = last_dialogue
+                self.player.player_data.last_questgiver_dialogue = self.current_dialogue
                 self.started_quest = True
                 self.awarded_player = False
                 self.done_quest = False

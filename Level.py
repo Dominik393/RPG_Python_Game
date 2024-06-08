@@ -43,6 +43,9 @@ class Level:
         self.setup(tmx_map)
 
     def setup(self, tmx_map):
+        quest_dialogue = "000"
+        if self.player_data.last_questgiver_dialogue is not None:
+            quest_dialogue = self.player_data.last_questgiver_dialogue
         for x, y, surf in tmx_map.get_layer_by_name('BG').tiles():
             Sprite((x * TILE_SIZE, y * TILE_SIZE), surf, (self.all_sprites))
         for x, y, surf in tmx_map.get_layer_by_name('Terrain').tiles():
@@ -54,7 +57,7 @@ class Level:
             elif obj.name == 'shopkeeper':
                 Shopkeeper((obj.x, obj.y), self.all_sprites, self.collision_sprites, "000", self.player, 0)
             elif obj.name == 'questgiver':
-                Questgiver((obj.x, obj.y), self.all_sprites, self.collision_sprites, "000", self.player, 500)
+                Questgiver((obj.x, obj.y), self.all_sprites, self.collision_sprites, quest_dialogue, self.player, 500)
             elif obj.name == 'informator':
                 Informator((obj.x, obj.y), self.all_sprites, self.collision_sprites, "000", self.player, 1000)
             elif obj.name == 'fortune':

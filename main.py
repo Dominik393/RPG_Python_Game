@@ -1,7 +1,5 @@
 import sys
-
 import pygame.sprite
-
 from GameSound import GameSound
 from Settings import *
 from Level import Level
@@ -11,7 +9,7 @@ from PlayerData import PlayerData
 from Menu import MainMenu
 from DeltaTime import DT
 
-#Klasa okienka z grą
+# Клас гри
 class Game:
     def __init__(self):
         pygame.init()
@@ -32,6 +30,22 @@ class Game:
 
         self.sound = GameSound()
 
+    def fade_to_black(self, reverse=False, fade_time=300):
+        fade_surface = pygame.Surface((WINDOW_WIDTH, WINDOW_HEIGHT))
+        fade_surface.fill((0, 0, 0))
+        if reverse:
+            for alpha in range(255, -1, -5):
+                fade_surface.set_alpha(alpha)
+                self.display_surface.blit(fade_surface, (0, 0))
+                pygame.display.update()
+                pygame.time.delay(fade_time // 51)
+        else:
+            for alpha in range(0, 256, 5):
+                fade_surface.set_alpha(alpha)
+                self.display_surface.blit(fade_surface, (0, 0))
+                pygame.display.update()
+                pygame.time.delay(fade_time // 51)
+
     def run(self):
         menu = MainMenu(self.sound)
         option = menu.run()
@@ -49,13 +63,16 @@ class Game:
         self.sound.background_sound.play(-1)
         self.player_data.level = level
 
-
         self.dt.update()
         while True:
             self.dt.update()
             if self.player_data.level != level:
+                self.fade_to_black()
                 level = self.player_data.level
                 self.current_stage = Level(self.tmx_maps[level], player_name, self.current_skin + 1, self.player_data)
+                pygame.display.update()
+                pygame.time.delay(100)  # Залишаємо екран чорним на короткий час
+                self.fade_to_black(reverse=True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -69,9 +86,7 @@ class Game:
                         else:
                             pass
             self.current_stage.run(self.dt)
-
             pygame.display.update()
-
 
 if __name__ == '__main__':
     game = Game()

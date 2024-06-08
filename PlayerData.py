@@ -41,6 +41,7 @@ class PlayerData(EntityData):
         self.itemset = itemset
         self.sound = sound
         self.level_UI = None
+        self.last_questgiver_dialogue = None
 
 
         # Player can earn coins only by collecting coins on map, speaking with Fortune and winning enemies
