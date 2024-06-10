@@ -12,7 +12,10 @@ class Quests(Enum):
     # specific_cond - for example, try Fortune, then FortuneNPC will write down that you have done this task
     FIRST_STEPS = (1, "First steps", 1, 10, 30, 0, [], False, False, 0, 10, [Item(ItemType.THREAD, 1)], False, "Buy 1 thread and earn 10 coins")
     MAGIC_DUEL = (2, "Magic duel", 1, 15, 50, 0, [Item(ItemType.ACID, 1)], False, False, 1, 0, [], True, "Try your fortune and win in one duel")
-    CHAMPION = (3, "Champion", 1, 20, 60, 100, [], [], True, 2, 0, True, True, "Buy any equipment and win all magic enemies")
+    CHAMPION = (3, "Champion", 1, 20, 60, 100, [], True, True, 2, 0, [], True, "Buy any equipment and win all magic enemies")
+    THE_BEST_ASSISTANT = (4, "The best assistant", 2, 10, 25, 0, [], False, False, 0, 0, [Item(ItemType.DIAMOND, 1)], True, "Find brown buttons on the map and buy 1 diamond")
+    NOT_A_NEWBIE_ANYMORE = (5, "Not a newbie anymore", 2, 30, 60, 50, [Item(ItemType.MAGIC_STONE, 1), Item(ItemType.SCISSORS, 1)], False, False, 4, 10, [], True, "Earn 10 coins and win 4 enemies")
+    FASHION_ENEMIES = (6, "Fashion enemies", 2, 30, 60, 100, [[Item(ItemType.ACID, 1)]], True, True, 2, 0, [], True, "Buy any equipment and win all magic enemies")
 
     @property
     def id(self):
