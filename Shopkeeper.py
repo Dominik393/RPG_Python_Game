@@ -5,7 +5,7 @@ from ItemType import ItemType
 from NPC import NPC
 from InventoryUI import InventoryUI
 from Settings import *
-from ShopInventory2UI import ShopInventory2UI
+from ShopInventoryUI import ShopInventoryUI
 
 
 def can_sell_equipment(equipment, player):
@@ -31,12 +31,13 @@ class Shopkeeper(NPC):
 
     def populate_inventory(self):
         for item_type in ItemType:
-            self.inventory.add_item(Item(item_type))
+            if self.player.player_data.level >= item_type.min_level_to_get:
+                self.inventory.add_item(Item(item_type))
 
     def dialogue(self):
         responses, last_dialogue = super().dialogue()
         if len(responses) > 0 and responses[0] == 0:
-            self.inventoryUI = ShopInventory2UI(self.groups, self.inventory, self.player, self)
+            self.inventoryUI = ShopInventoryUI(self.groups, self.inventory, self.player, self)
 
 
     # def action(self, player):

@@ -60,8 +60,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 608.5,
-                "y": 478.25
+                "x": 956,
+                "y": 656.25
             }
         },
         "level1.tmx#Coins": {
@@ -192,8 +192,8 @@
             "scale": 0.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1040,
-                "y": 545
+                "x": 1038,
+                "y": 543
             }
         },
         "level3.tmx#Coins": {
@@ -271,7 +271,7 @@
             "scaleInDock": 1
         }
     },
-    "last.imagePath": "D:/AGH/4 semestr/Python/RPG_Python_Game/graphics/enemies/Winged",
+    "last.imagePath": "D:/AGH/4 semestr/Python/RPG_Python_Game/graphics/objects/items",
     "map.height": 15,
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 64,
@@ -292,7 +292,7 @@
     ],
     "tileset.embedInMap": true,
     "tileset.tileSize": {
-        "height": 48,
-        "width": 48
+        "height": 58,
+        "width": 64
     }
 }

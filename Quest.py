@@ -1,3 +1,6 @@
+from random import random
+
+import Skills
 from PlayerData import PlayerData
 
 
@@ -26,5 +29,9 @@ class Quest:
         player_data.health = min(player_data.health + self.quest.prize_health, 100)
         for item in self.quest.prize_equipment:
             player_data.inventory.add_item(item)
-        for skill in self.quest.prize_skills:
-            player_data.skills.add(skill)
+        print(len(player_data.skills, len(list(Skills))))
+        if self.quest.prize_skills and len(player_data.skills < len(list(Skills))):
+            random_skill = random.choice(list(Skills))
+            while random_skill in player_data.skills:
+                random_skill = random.choice(list(Skills))
+        player_data.skills.add(random_skill)

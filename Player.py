@@ -235,9 +235,9 @@ class Player(pygame.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, self.rect.topleft)
 
-        # name_surface = self.font.render(self.name, True, (255, 255, 255))
-        # name_rect = name_surface.get_rect(center=(self.rect.centerx, self.rect.top - 10))
-        # screen.blit(name_surface, name_rect)
+        name_surface = self.font.render(self.name, True, (255, 255, 255))
+        name_rect = name_surface.get_rect(center=(self.rect.centerx, self.rect.top - 10))
+        screen.blit(name_surface, name_rect)
 
     def process_status_effects(self, enemy):
         if enemy.status_effects.protected:

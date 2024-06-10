@@ -48,7 +48,7 @@ class MiniMap:
                 elif isinstance(sprite, Enemy):
                     pygame.draw.circle(self.display_surface, 'red', sprite_pos, self.dot_radius)
 
-    def draw(self, shrink_factor=0.4):
+    def draw(self, shrink_factor=0.5):  # Змінив значення shrink_factor з 0.4 на 0.5
         crop_width = self.width // 2 * (1 - shrink_factor)
         crop_height = self.height // 2 * (1 - shrink_factor)
 

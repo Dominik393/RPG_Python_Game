@@ -16,7 +16,7 @@ def create_character(sound):
     display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     clock = pygame.time.Clock()
     text = ''
-    default_text = font.render("Nazwa Postaci", True, color)
+    default_text = font.render("Character name", True, color)
 
     skills_list = [
         Skills.SPEED_UP,
@@ -86,9 +86,9 @@ def create_character(sound):
             display_surface.blit(item_surface, (item_x, item_y))
 
             item_id, price, damage, min_power_to_get, file, name = item_type.value
-            item_data_text = font.render(f"Damage: {damage} Min level: {min_power_to_get}",
+            item_data_text = font.render(f"Damage: {damage}, Min level to get: {min_power_to_get}",
                                          True, (255, 255, 255))
-            text_x = item_x - 115
+            text_x = item_x - 150
             text_y = item_y + item_surface.get_height()
             display_surface.blit(item_data_text, (text_x, text_y))
 
@@ -101,9 +101,9 @@ def create_character(sound):
         display_surface.blit(skill_surface, (skill_x, skill_y))
 
         skill_id, skill_price, skill_min_power_to_get, skill_file, skill_name = current_skill.value
-        skill_data_text = font.render(f"Skill: {skill_name}, Min level: {skill_min_power_to_get}",
+        skill_data_text = font.render(f"Skill: {skill_name}",
                                       True, (255, 255, 255))
-        display_surface.blit(skill_data_text, (skill_x - 140, skill_y + skill_surface.get_height()))
+        display_surface.blit(skill_data_text, (skill_x - 70, skill_y + skill_surface.get_height()))
 
         arrows_image = pygame.image.load(join("graphics", "buttons", "arrow_keys.png")).convert_alpha()
         arrows_width, arrows_height = arrows_image.get_size()
