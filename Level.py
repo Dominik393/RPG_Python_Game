@@ -18,6 +18,7 @@ from Winged import Winged
 from Zombie import Zombie
 from Draft import Draft
 from MiniMap import MiniMap
+from QuestItem import QuestItem
 
 class Level:
     def __init__(self, tmx_map, player_name, current_skin, player_data):
@@ -78,6 +79,8 @@ class Level:
                 Winged((obj.x, obj.y), self.all_sprites, self.collision_sprites, self.player, 0, 15, 150, vector(0, 1))
             elif obj.name == 'coin':
                 Coin((obj.x, obj.y), self.all_sprites, self.player)
+            elif obj.name == 'brown_buttons':
+                QuestItem((obj.x, obj.y), self.all_sprites, self.player, "brown_buttons")
             else:
                 Sprite((obj.x, obj.y), obj.image, (self.all_sprites, self.collision_sprites))
 

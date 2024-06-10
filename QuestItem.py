@@ -1,18 +1,18 @@
 import pygame
 
-import Quests
+from Quests import Quests
 from Settings import *
 from Spritessheet import SpritesSheet
 
 
-class Coin(pygame.sprite.Sprite):
+class QuestItem(pygame.sprite.Sprite):
     def __init__(self, pos, groups, player, name):
         super().__init__(groups)
         self.groups = groups
-        self.image = pygame.Surface((48, 56))
+        self.image = pygame.Surface((64, 57))
         self.rect = self.image.get_rect(topleft=pos)
 
-        self.image = self.sprite_positions[self.current_img]
+        self.image = pygame.image.load(join('graphics', 'objects', 'items', 'brown_buttons.png'))
         self.player = player
 
         self.name = name

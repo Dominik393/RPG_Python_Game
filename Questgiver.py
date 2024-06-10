@@ -10,10 +10,10 @@ class Questgiver(NPC):
         self.started_quest = False
         self.awarded_player = False
         self.done_quest = False
-        self.quest_id = 0
+        self.quest_id = 1
 
     def action(self):
-        if not self.awarded_player:
+        if self.player.player_data.quest is not None and not self.awarded_player:
             # award player
             self.player.player_data.quest.rewardPlayer(self.player.player_data)
             self.awarded_player = True
@@ -38,11 +38,13 @@ class Questgiver(NPC):
             self.configure_data()
         responses, last_dialogue = super().dialogue()
         response_num = int(last_dialogue)
+        print(list(Quests)[(self.quest_id * self.player.player_data.level)-1])
+        print(self.quest_id, self.player.player_data.level)
         if 0 < response_num < 1000 and response_num % 2:
 
             # start new quest
             if not self.started_quest:
-                self.player.player_data.quest = Quest(self.player.player_data, list(Quests)[self.quest_id])
+                self.player.player_data.quest = Quest(self.player.player_data, list(Quests)[(self.quest_id + ((self.player.player_data.level - 1) * 3))-1])
                 self.current_dialogue = last_dialogue
                 self.player.player_data.last_questgiver_dialogue = self.current_dialogue
                 self.started_quest = True

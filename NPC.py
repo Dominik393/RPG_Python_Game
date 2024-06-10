@@ -2,8 +2,6 @@ from Dialogue import Dialogue
 from Settings import *
 from Spritessheet import SpritesSheet
 from NPC_UI import UI
-
-
 class NPC(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, current_dialogue, player, timer):
         super().__init__([groups, collision_sprites])

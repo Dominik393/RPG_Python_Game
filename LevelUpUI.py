@@ -20,3 +20,13 @@ class LevelUpUI(WindowUI):
     def render(self):
         self.image.blit(self.background_image, (0, 0))
         self.image.blit(self.button_image, self.button_rect)
+
+    def input(self):
+        mouse_buttons = pygame.mouse.get_pressed()
+        mouse_pos = pygame.mouse.get_pos()
+        if mouse_buttons[0]:
+            relative_mouse_pos = (mouse_pos[0] - 2 * self.button_rect.width, (mouse_pos[1] - self.bound[1]))
+            if self.button_rect.collidepoint(relative_mouse_pos):
+                self.player.player_data.sound.mouse_click_sound.play()
+                self.player.player_data.up_level()
+                self.kill()
