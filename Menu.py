@@ -55,6 +55,7 @@ class MainMenu:
             self.sound.menu_sound.play()
             self.current_option = (self.current_option + 1) % len(self.options)
         elif keys[pygame.K_RETURN]:
+            self.sound.menu_sound.play()
             return self.options[self.current_option]
 
     def run(self):

@@ -6,26 +6,29 @@ from Notification import *
 
 def reward_player_fight(player, enemy):
     player.player_data.enemies_won_level += 1
-    print(player.player_data.level, enemy.start_power * 10, player.player_data.power // 2)
-    earned = enemy.start_power * 5 * player.player_data.power // 2
+    earned = enemy.start_power * player.player_data.power // 2
     player.player_data.coins += earned
     player.player_data.earned_coins_level += earned
     player.player_data.exp += 15 * player.player_data.level
 
+
 def player_attack(player, enemy):
     if not player.process_status_effects(enemy):
         return False
-
+    player.player_data.sound.attack_sound.play()
     enemy.enemy_data.reduce_health(player.player_data.damage)
+
 
 def is_enemy_dead(enemy):
     return enemy.get_health() <= 0
+
 
 def display_player(player, display_surface):
     my_spritesheet = SpritesSheet(join('graphics', 'player', f'{player.skin}', 'texture.png'))
     sprite_down = my_spritesheet.parse_sprite('8.png')
     skin_view = pygame.transform.scale(sprite_down, (200, 200))
     display_surface.blit(skin_view, (150, 300))
+
 
 def display_enemy(enemy, display_surface):
     enemy_spritesheet = SpritesSheet(join(f'graphics/enemies/{enemy.__class__.__name__}/texture.png'))
@@ -80,10 +83,11 @@ def item_buttons_list(player, button):
         item_list_surface.blit(text_surface, text_position)
 
         buttons.append(Button(button.x, button.y - item_height * (i + 1), item_width, item_height, item.name,
-                              (10, 120, 255)))
+                              (10, 120, 255), function=item.use))
         buttons[-1].set_surface(item_list_surface)
 
     return buttons
+
 
 def display_health(player, enemy, display_surface):
     # Create health Bars for player and enemy
@@ -114,6 +118,7 @@ def display_health(player, enemy, display_surface):
     display_surface.blit(text_surface_player, text_rect_player.topleft)  # Use the centered text rect
     display_surface.blit(text_surface_enemy, text_rect_enemy.topleft)  # Use the centered text rect
 
+
 def create_buttons():
     button_width, button_height = 370, 50
     button_y = WINDOW_HEIGHT - button_height - 40
@@ -124,10 +129,135 @@ def create_buttons():
 
     return button1, button2, button3
 
+
+def attack_animation(player, enemy, display_surface):
+    # Load player and enemy sprites
+    player_spritesheet = SpritesSheet(join('graphics', 'player', f'{player.skin}', 'texture.png'))
+    enemy_spritesheet = SpritesSheet(join(f'graphics/enemies/{enemy.__class__.__name__}/texture.png'))
+    player_right = player_spritesheet.parse_sprite('8.png')
+    enemy_right = enemy_spritesheet.parse_sprite('5.png')
+    player_right = pygame.transform.scale(player_right, (200, 200))
+    enemy_right = pygame.transform.scale(enemy_right, (200, 200))
+    background_image = pygame.image.load('graphics/map/background/village.png').convert()
+
+    player_pos = (150 - 4, 300 - 4)
+    enemy_pos = (WINDOW_WIDTH - 350 - 4, 300 - 4)
+
+    surface_width, surface_height = 208, 208
+    player_surface = pygame.Surface((surface_width, surface_height))
+    enemy_surface = pygame.Surface((surface_width, surface_height))
+    player_surface.blit(player_right, (4, 4))
+    enemy_surface.blit(enemy_right, (4, 4))
+
+    move_player_right = True
+    move_player_left = False
+    move_enemy_left = False
+    move_enemy_right = False
+
+    pygame.draw.rect(display_surface, 'black', (0, WINDOW_HEIGHT - 150, WINDOW_WIDTH, WINDOW_HEIGHT))
+    display_surface.blit(background_image, (0, -350))
+    pygame.display.flip()
+
+    while True:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        if move_player_right:
+            player_pos = (player_pos[0] + 2, player_pos[1])
+            background_subsurface = background_image.subsurface(
+                (player_pos[0], player_pos[1], surface_width, surface_height))
+            background_subsurface.blit(player_surface, (0, 0))
+            if player_pos[0] >= WINDOW_WIDTH - 750:
+                move_player_right = False
+                move_player_left = True
+                display_health(player, enemy, display_surface)
+        elif move_player_left:
+            player_pos = (player_pos[0] - 2, player_pos[1])
+            background_subsurface = background_image.subsurface(
+                (player_pos[0], player_pos[1], surface_width, surface_height))
+            background_subsurface.blit(player_surface, (0, 0))
+            if player_pos[0] <= 150 - 4:
+                move_player_left = False
+                move_enemy_left = True
+        elif move_enemy_left:
+            enemy_pos = (enemy_pos[0] - 2, enemy_pos[1])
+            background_subsurface = background_image.subsurface(
+                (enemy_pos[0], enemy_pos[1], surface_width, surface_height))
+            background_subsurface.blit(enemy_surface, (0, 0))
+            if enemy_pos[0] <= 550:
+                move_enemy_left = False
+                move_enemy_right = True
+        elif move_enemy_right:
+            enemy_pos = (enemy_pos[0] + 2, enemy_pos[1])
+            background_subsurface = background_image.subsurface(
+                (enemy_pos[0], enemy_pos[1], surface_width, surface_height))
+            background_subsurface.blit(enemy_surface, (0, 0))
+            if enemy_pos[0] >= WINDOW_WIDTH - 350:
+                move_enemy_right = False
+                return
+
+        # Create a subsurface of the background image for player and enemy
+        player_background_subsurface = background_image.subsurface(
+            pygame.Rect(player_pos[0], player_pos[1] + 350, surface_width, surface_height))
+        enemy_background_subsurface = background_image.subsurface(
+            pygame.Rect(enemy_pos[0], enemy_pos[1] + 350, surface_width, surface_height))
+
+        # Blit the subsurface onto the player and enemy surfaces
+        player_surface.blit(player_background_subsurface, (0, 0))
+        enemy_surface.blit(enemy_background_subsurface, (0, 0))
+
+        # Blit player and enemy onto their surfaces
+        player_surface.blit(player_right, (4, 4))
+        enemy_surface.blit(enemy_right, (4, 4))
+
+        # Blit the player and enemy surfaces onto the display surface at the new positions
+        display_surface.blit(player_surface, player_pos)
+        display_surface.blit(enemy_surface, enemy_pos)
+
+        pygame.display.flip()
+        pygame.time.wait(1)
+
+
+def draw_everything(player, enemy, display_surface, background_image, buttons, item_buttons=None, skill_buttons=None):
+    display_surface.blit(background_image, (0, -350))
+
+    pygame.draw.rect(display_surface, 'black', (0, WINDOW_HEIGHT - 150, WINDOW_WIDTH, WINDOW_HEIGHT))
+
+    display_player(player, display_surface)
+
+    display_enemy(enemy, display_surface)
+
+    display_health(player, enemy, display_surface)
+
+    for button in buttons:
+        button.draw(display_surface, 1)
+
+    if item_buttons:
+        for button in item_buttons:
+            button.draw(display_surface)
+
+    if skill_buttons:
+        for button in skill_buttons:
+            button.draw(display_surface)
+
+    pygame.display.flip()
+
+
+def confirm_enemy_death(enemy, player):
+    player.player_data.sound.fight_win_sound.play()
+    reward_player_fight(player, enemy)
+    player.player_data.sound.fight_sound.set_volume(0.0)
+    player.player_data.sound.background_sound.set_volume(0.05)
+    enemy.destroy()
+
+
 def fight(enemy, player, dt):
     display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     clock = pygame.time.Clock()
-    background_image = pygame.image.load('graphics/map/background/1.png').convert()
+    background_image = pygame.image.load('graphics/map/background/village.png').convert()
 
     # Create buttons
     buttons = create_buttons()
@@ -152,6 +282,13 @@ def fight(enemy, player, dt):
                         if button.is_over(pos):
                             button.use_function(player, enemy)
                             did_action = True
+                            skill_buttons = None
+                if item_buttons:
+                    for button in item_buttons:
+                        if button.is_over(pos):
+                            button.use_function(player, enemy)
+                            did_action = True
+                            item_buttons = None
                 if buttons[0].is_over(pos):
                     if player_attack(player, enemy):
                         enemy.kill()
@@ -170,11 +307,18 @@ def fight(enemy, player, dt):
                         item_buttons = item_buttons_list(player, buttons[2])
                     print('button 3 clicked')
         if did_action:
+            attack_animation(player, enemy, display_surface)
+            if is_enemy_dead(enemy):
+                confirm_enemy_death(enemy, player)
+                return
             enemy.fight_ai(player)
             did_action = False
 
+        # Display background image
+        display_surface.blit(background_image, (0, -350))
 
-        display_surface.fill((30, 30, 30))
+        # Fill lower part of the screen with black
+        pygame.draw.rect(display_surface, 'black', (0, WINDOW_HEIGHT - 150, WINDOW_WIDTH, WINDOW_HEIGHT))
 
         # Display player sprite
         display_player(player, display_surface)
@@ -182,7 +326,7 @@ def fight(enemy, player, dt):
         # Display enemy sprite
         display_enemy(enemy, display_surface)
 
-        # Display squares above player and enemy
+        # Display bars for player and enemy health
         display_health(player, enemy, display_surface)
 
         # Draw buttons
@@ -203,9 +347,7 @@ def fight(enemy, player, dt):
                 notification = None
 
         if is_enemy_dead(enemy):
-            player.player_data.sound.fight_win_sound.play()
-            reward_player_fight(player, enemy)
-            enemy.destroy()
+            confirm_enemy_death(enemy, player)
             return
 
         pygame.display.flip()

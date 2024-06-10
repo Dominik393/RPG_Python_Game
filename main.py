@@ -60,6 +60,7 @@ class Game:
         level = 1
         self.player_data = PlayerData(100, 30, 30, 1, 10, self.current_skin + 1, self.sound)
         self.current_stage = Level(self.tmx_maps[level], player_name, self.current_skin + 1, self.player_data)
+        self.sound.start_game_sound.stop()
         self.sound.background_sound.play(-1)
         self.player_data.level = level
 

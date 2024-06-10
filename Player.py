@@ -49,6 +49,7 @@ class Player(pygame.sprite.Sprite):
         self.skin_timer = 0
         self.prev_image = self.current_skin[1]
         self.is_moving = False
+        self.paused = False
 
         self.is_invisible = False
         self.invisibility_start_time = None
@@ -78,6 +79,7 @@ class Player(pygame.sprite.Sprite):
         self.font = pygame.font.Font(None, 24)
 
         self.current_time = pygame.time.get_ticks()
+        self.last_upd_health_time = pygame.time.get_ticks()
 
     def input(self):
         self.current_time = pygame.time.get_ticks()
@@ -269,9 +271,12 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, dt):
         self.old_rect = self.rect.copy()
-        self.input()
-        self.move(dt)
-
+        if not self.paused:
+            self.input()
+            self.move(dt)
+        if (pygame.time.get_ticks() - self.last_upd_health_time) % 10000 == 0 and not self.paused:
+            self.last_upd_health_time = pygame.time.get_ticks()
+            self.player_data.increase_health(5)
 
         if self.player_data.timer > 0:
             self.player_data.timer = 30000 - (self.current_time - self.last_ability_time)

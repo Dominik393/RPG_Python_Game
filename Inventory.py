@@ -50,6 +50,9 @@ class Inventory:
         for i in range(self.columns):
             for j in range(self.rows):
                 if self.inventory[i][j] != 0:
+                    if self.inventory[i][j].amount <= 0:
+                        self.inventory[i][j] = 0
+                        continue
                     items.append(self.inventory[i][j])
         return items
 

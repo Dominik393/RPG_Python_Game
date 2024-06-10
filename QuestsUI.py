@@ -37,11 +37,10 @@ class QuestsUI(WindowUI):
             self.prizeCoins = self.player.player_data.quest.quest.prize_coins
             self.prizeHealth = self.player.player_data.quest.quest.prize_health
             self.prizeEquipment = self.player.player_data.quest.quest.prize_equipment
-            self.prizeSkills = self.player.player_data.quest.quest.prize_skills
+            self.prizeSkill = self.player.player_data.quest.prize_skill
             self.paragraph = 60
 
             if len(self.prizeEquipment) > 0: self.equipment_paragraph = 60
-            if len(self.prizeSkills) > 0: self.skills_paragraph = 60
 
 
         self.item_rect = None
@@ -109,20 +108,19 @@ class QuestsUI(WindowUI):
                 self.image.blit(item_image, item_rect)
                 start += (image_width + step)
 
-        if hasattr(self, 'prizeSkills') and len(self.prizeSkills) > 0:
+        if hasattr(self, 'prizeSkills') and self.prizeSkill:
             skills_text_surface = self.font.render("Skills:", True, (0, 0, 0))
             skills_text_rect = skills_text_surface.get_rect(
                 center=(self.image.get_width() // 2, self.image.get_height() // 2 + 70 + self.equipment_paragraph))
             self.image.blit(skills_text_surface, skills_text_rect)
-            skills_amount = len(self.prizeSkills)
             step = 20
             image_width = 64
-            width = image_width * skills_amount + step * (skills_amount - 2)
+            width = image_width - step
             start = skills_text_rect.centerx - width // 2 + step
-            for skill in self.prizeSkills:
-                skill_image = skill.value[3]
-                skill_rect = skill_image.get_rect(center=(start, skills_text_rect.centery + 40))
-                self.image.blit(skill_image, skill_rect)
-                start += (image_width + step)
+
+            skill_image = self.prizeSkill.value[3]
+            skill_rect = skill_image.get_rect(center=(start, skills_text_rect.centery + 40))
+            self.image.blit(skill_image, skill_rect)
+            start += (image_width + step)
 
         self.image.blit(self.button_image, self.button_rect)

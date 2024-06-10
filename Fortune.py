@@ -88,5 +88,5 @@ class Fortune(NPC):
         super().update(dt)
         if self.current_dialogue.__eq__('003') and self.fortune_timer > 0:
             self.fortune_timer -= 1
-        elif self.current_dialogue == '003' and self.fortune_timer == 0:
+        elif self.current_dialogue == '003' and self.fortune_timer <= 0:
             self.current_dialogue = '000'

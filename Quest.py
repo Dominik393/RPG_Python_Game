@@ -1,16 +1,26 @@
-from random import random
+import random
 
-import Skills
+from Skills import Skills
 from PlayerData import PlayerData
 
 
 class Quest:
     def __init__(self, player_data, quest):
+        self.player_data = player_data
         self.quest = quest
         player_data.demand_coins_total += self.quest.coins_to_earn
         player_data.demand_enemies_won_total += self.quest.enemies_to_win
         self.start_player_data = PlayerData(player_data.health, player_data.coins, player_data.power, player_data.magic_power, player_data.mana, player_data.itemset, player_data.sound)
         self.specific_cond = False
+        self.prize_skill = self.define_prize_skills()
+
+    def define_prize_skills(self):
+        if self.quest.prize_skills and len(self.player_data.skills) < len(list(Skills)):
+            random_skill = random.choice(list(Skills))
+            while random_skill in self.player_data.skills:
+                random_skill = random.choice(list(Skills))
+            return random_skill
+        return None
 
     def isDone(self, player_data):
         if player_data.enemies_won_level < player_data.demand_enemies_won_total: return False
@@ -29,9 +39,4 @@ class Quest:
         player_data.health = min(player_data.health + self.quest.prize_health, 100)
         for item in self.quest.prize_equipment:
             player_data.inventory.add_item(item)
-        print(len(player_data.skills, len(list(Skills))))
-        if self.quest.prize_skills and len(player_data.skills < len(list(Skills))):
-            random_skill = random.choice(list(Skills))
-            while random_skill in player_data.skills:
-                random_skill = random.choice(list(Skills))
-        player_data.skills.add(random_skill)
+        player_data.skills.add(self.prize_skill)
