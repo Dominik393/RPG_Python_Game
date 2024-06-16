@@ -8,7 +8,6 @@ class Coin(pygame.sprite.Sprite):
         super().__init__(groups)
         self.groups = groups
         self.image = pygame.Surface((48, 56))
-        # self.image.fill('red')
         self.rect = self.image.get_rect(topleft=pos)
 
         self.old_rect = self.rect.copy()
@@ -32,9 +31,10 @@ class Coin(pygame.sprite.Sprite):
             self.current_img = (self.current_img + 1) % len(self.sprite_positions)
             self.image = self.sprite_positions[self.current_img]
             self.last_update_time = current_time
-            # Check collision with player
 
+        # Check collision with player
         if self.rect.collidepoint(self.player.rect.center):
             self.player.player_data.increase_coins(1)
+            self.player.sound.coin_sound.play()
             self.player.player_data.earned_coins_level += 1
             self.kill()

@@ -2,10 +2,8 @@ import random
 
 from Skills import Skills
 from ItemType import ItemType
-from Settings import *
 from Item import Item
 from Inventory import Inventory
-from EntityData import EntityData
 from EntityData import EntityData
 from BattleSkill import *
 
@@ -36,7 +34,8 @@ class PlayerData(EntityData):
         self.quest = None
         self.exp = 0
         self.itemset = itemset
-
+        self.level_UI = None
+        self.last_questgiver_dialogue = None
 
         # Player can earn coins only by collecting coins on map, speaking with Fortune and winning enemies
         # In these variables we don`t add earned coins in quests
@@ -50,8 +49,6 @@ class PlayerData(EntityData):
 
         if self.itemset is None:
             self.itemset = random.choice(list(available_items.keys())) + 1
-        else:
-            print((self.itemset - 1) % len(Skills))
         for item in available_items[self.itemset - 1]: self.inventory.add_item(Item(item, 3))
 
         self.skills.add(list(Skills)[(self.itemset - 1) % len(Skills)])

@@ -1,6 +1,5 @@
 import math
 from Notification import *
-from Settings import *
 
 class BattleSkill:
     def __init__(self, power, mana_cost, name):

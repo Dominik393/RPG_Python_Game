@@ -1,23 +1,23 @@
-import pygame
-
+from LevelUpUI import LevelUpUI
 from Skills import Skills
-from PlayerData import PlayerData
 from Settings import *
 from Spritessheet import SpritesSheet
-from InventoryUI import InventoryUI
-from pygame.math import Vector2 as vector
+from pygame.math import Vector2 as Vector
 from StatusEffects import StatusEffects
+from TimerWindow import TimerWindow
+from Quests import Quests
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, collision_sprites, invisible_collision_sprites, player_data, name="undefined",
-                 skin=1):
+                 skin=1, sound=None):
         super().__init__([groups, collision_sprites])
+        self.groups = groups
         self.invisible_collision_sprites = invisible_collision_sprites
         self.image = pygame.Surface((42, 48))
 
         self.rect = self.image.get_frect(topleft=pos)
         self.old_rect = self.rect.copy()
-
         self.speed = 250
         self.player_data = player_data
         self.status_effects = StatusEffects()
@@ -27,6 +27,8 @@ class Player(pygame.sprite.Sprite):
         self.name = name
         self.direction = None
         self.skin = skin
+
+        self.sound = sound
 
         self.move_disabled = False
 
@@ -49,23 +51,22 @@ class Player(pygame.sprite.Sprite):
         self.skin_timer = 0
         self.prev_image = self.current_skin[1]
         self.is_moving = False
+        self.paused = False
 
         self.is_invisible = False
         self.invisibility_start_time = None
 
-        self.teleport_target = None  # Координати для телепортації
+        self.teleport_target = None
 
-        # Додані змінні для пришвидшення
-        self.speed_boost = 3  # Коефіцієнт пришвидшення
+        self.speed_boost = 3
         self.boost_timer = 0
-        self.boost_duration = 10 * 1000  # 10 секунд
+        self.boost_duration = 10 * 1000
 
-        # Змінні для зменшення персонажа
-        self.shrink_duration = 10 * 1000  # 10 секунд
+        self.shrink_duration = 10 * 1000
         self.shrink_timer = 0
         self.original_size = self.rect.size
 
-        self.last_ability_time = pygame.time.get_ticks()  # Останній час використання здібностей
+        self.last_ability_time = pygame.time.get_ticks()
 
         self.original_images = {
             "down": self.sprite_down.copy(),
@@ -74,87 +75,87 @@ class Player(pygame.sprite.Sprite):
             "up": self.sprite_up.copy()
         }
 
-        # Створення шрифту для ніку
         self.font = pygame.font.Font(None, 24)
 
         self.current_time = pygame.time.get_ticks()
+        self.last_upd_health_time = pygame.time.get_ticks()
 
     def input(self):
         self.current_time = pygame.time.get_ticks()
         keys = pygame.key.get_pressed()
-        key_direction = vector(0, 0)
+        key_direction = Vector(0, 0)
 
-        # Перевірка кнопок
         if keys[pygame.K_RIGHT]:
-            key_direction = vector(1, 0)
+            key_direction = Vector(1, 0)
             self.current_skin = self.sprite_right
             self.is_moving = True
         elif keys[pygame.K_LEFT]:
-            key_direction = vector(-1, 0)
+            key_direction = Vector(-1, 0)
             self.current_skin = self.sprite_left
             self.is_moving = True
         elif keys[pygame.K_UP]:
-            key_direction = vector(0, -1)
+            key_direction = Vector(0, -1)
             self.current_skin = self.sprite_up
             self.is_moving = True
         elif keys[pygame.K_DOWN]:
-            key_direction = vector(0, 1)
+            key_direction = Vector(0, 1)
             self.current_skin = self.sprite_down
             self.is_moving = True
         else:
             self.image = self.current_skin[1]
 
-        # Обробка натискання кнопок
-        if (keys[pygame.K_f] or keys[pygame.K_v] or keys[pygame.K_s]) and (
-                self.not_used_skills or self.current_time - self.last_ability_time > 30000):
-            if keys[pygame.K_f] and Skills.SPEED_UP in self.player_data.skills:
-                self.activate_speed_boost()
-                Sounds().skill_activate_sound.play()
-                self.update_config()
-            elif keys[pygame.K_v] and Skills.INVISIBILITY in self.player_data.skills:
-                self.activate_invisibility()
-                Sounds().skill_activate_sound.play()
-                self.update_config()
-            elif keys[pygame.K_s] and Skills.SHRINK in self.player_data.skills:
-                self.shrink_player()
-                Sounds().skill_small_sound.play()
-                self.update_config()
-
-
-        if keys[pygame.K_t] and Skills.TELEPORTATION in self.player_data.skills and (
-                self.not_used_skills or self.current_time - self.last_ability_time > 30000):
-            if pygame.mouse.get_pressed()[0]:
-                self.teleport_target = pygame.mouse.get_pos()
-                Sounds().jump_sound.play()
-                self.update_config()
-
-        # Телепортація, якщо телепорт-таргет встановлено
-        if self.teleport_target:
-            is_collision = False
-            for sprite in self.collision_sprites:
-                if sprite.rect.collidepoint(self.teleport_target):
-                    is_collision = True
-                    break
-            if not is_collision:
-                self.rect.center = self.teleport_target
-            self.teleport_target = None
+        if keys[pygame.K_f] or keys[pygame.K_v] or keys[pygame.K_s] or keys[pygame.K_t]:
+            if self.not_used_skills or self.current_time - self.last_ability_time > 30000:
+                if keys[pygame.K_f] and Skills.SPEED_UP in self.player_data.skills:
+                    self.activate_speed_boost()
+                    self.sound.skill_activate_sound.play()
+                    self.update_config()
+                elif keys[pygame.K_v] and Skills.INVISIBILITY in self.player_data.skills:
+                    self.activate_invisibility()
+                    self.sound.skill_activate_sound.play()
+                    self.update_config()
+                elif keys[pygame.K_s] and Skills.SHRINK in self.player_data.skills:
+                    self.shrink_player()
+                    self.sound.skill_small_sound.play()
+                    self.update_config()
+                elif keys[pygame.K_t] and Skills.TELEPORTATION in self.player_data.skills:
+                    if pygame.mouse.get_pressed()[0]:
+                        self.teleport_target = (self.rect.centerx + pygame.mouse.get_pos()[0] - WINDOW_WIDTH // 2,
+                                                self.rect.centery + pygame.mouse.get_pos()[1] - WINDOW_HEIGHT // 2)
+                        self.try_teleport()
+            elif 0 < self.player_data.timer < 29500:
+                TimerWindow(self.groups, self)
 
         self.direction = key_direction
+
+    def try_teleport(self):
+        if self.teleport_target:
+            for sprite in self.collision_sprites:
+                if sprite.rect.collidepoint(self.teleport_target):
+                    return False
+            self.rect.center = self.teleport_target
+            self.teleport_target = None
+            self.sound.jump_sound.play()
+            self.update_config()
+            return True
+        return False
 
     def update_config(self):
         self.last_ability_time = self.current_time
         self.not_used_skills = False
         self.player_data.timer = 30000 - (self.current_time - self.last_ability_time)
+        if self.player_data.quest is not None and (self.player_data.quest.quest == Quests.LAST_DANCE):
+            self.player_data.quest.specific_cond = True
 
     def activate_invisibility(self):
         if not self.is_invisible:
             self.is_invisible = True
             self.invisibility_start_time = pygame.time.get_ticks()
-            self.set_transparency(128)  # 50% transparency
+            self.set_transparency(128)
 
     def deactivate_invisibility(self):
         self.is_invisible = False
-        self.set_transparency(255)  # Reset transparency to 100%
+        self.set_transparency(255)
 
     def set_transparency(self, alpha):
         for img_list in [self.sprite_down, self.sprite_left, self.sprite_right, self.sprite_up]:
@@ -208,13 +209,13 @@ class Player(pygame.sprite.Sprite):
 
     def activate_speed_boost(self):
         if self.boost_timer == 0:
-            self.speed *= self.speed_boost  # Збільшення швидкості гравця
+            self.speed *= self.speed_boost
 
         self.boost_timer = pygame.time.get_ticks()
 
     def shrink_player(self):
-        self.rect.size = (self.rect.width // 2, self.rect.height // 2)  # Зменшення розміру персонажа
-        # Зменшення розміру зображень
+        self.rect.size = (self.rect.width // 2, self.rect.height // 2)
+
         self.sprite_down = [pygame.transform.scale(image, (image.get_width() // 2, image.get_height() // 2)) for image
                             in self.original_images["down"]]
         self.sprite_left = [pygame.transform.scale(image, (image.get_width() // 2, image.get_height() // 2)) for image
@@ -223,7 +224,7 @@ class Player(pygame.sprite.Sprite):
                              in self.original_images["right"]]
         self.sprite_up = [pygame.transform.scale(image, (image.get_width() // 2, image.get_height() // 2)) for image
                           in self.original_images["up"]]
-        self.shrink_timer = pygame.time.get_ticks()  # Встановлення таймера зменшення персонажа
+        self.shrink_timer = pygame.time.get_ticks()
 
     def reset_images(self):
         self.sprite_down = self.original_images["down"].copy()
@@ -232,10 +233,8 @@ class Player(pygame.sprite.Sprite):
         self.sprite_up = self.original_images["up"].copy()
 
     def draw(self, screen):
-        # Відображення персонажа
         screen.blit(self.image, self.rect.topleft)
 
-        # Відображення ніку над персонажем
         name_surface = self.font.render(self.name, True, (255, 255, 255))
         name_rect = name_surface.get_rect(center=(self.rect.centerx, self.rect.top - 10))
         screen.blit(name_surface, name_rect)
@@ -261,7 +260,6 @@ class Player(pygame.sprite.Sprite):
 
         return True
 
-
     def get_health(self):
         return self.player_data.health
 
@@ -270,22 +268,24 @@ class Player(pygame.sprite.Sprite):
 
     def update(self, dt):
         self.old_rect = self.rect.copy()
-        self.input()
-        self.move(dt)
-
+        if not self.paused:
+            self.input()
+            self.move(dt)
+        if (pygame.time.get_ticks() - self.last_upd_health_time) % 10000 == 0 and not self.paused:
+            self.last_upd_health_time = pygame.time.get_ticks()
+            self.player_data.increase_health(5)
 
         if self.player_data.timer > 0:
             self.player_data.timer = 30000 - (self.current_time - self.last_ability_time)
-            if self.player_data.timer == 0:
-                Sounds().timer_sound.play()
-        else: self.player_data.timer = 0
+            if self.player_data.timer == 0: self.sound.timer_sound.play()
+        else:
+            self.player_data.timer = 0
 
-        # Перевірка часу зменшення персонажа
         if self.shrink_timer != 0:
             if pygame.time.get_ticks() - self.shrink_timer > self.shrink_duration:
-                Sounds().skill_small_sound.play()
-                self.rect.size = self.original_size  # Повернення до оригінального розміру
-                self.reset_images()  # Відновлення оригінальних зображень
+                self.sound.skill_small_sound.play()
+                self.rect.size = self.original_size
+                self.reset_images()
                 self.shrink_timer = 0
 
         if self.is_invisible and pygame.time.get_ticks() - self.invisibility_start_time > 10000:
@@ -293,20 +293,10 @@ class Player(pygame.sprite.Sprite):
 
         if self.boost_timer != 0:
             if pygame.time.get_ticks() - self.boost_timer > self.boost_duration:
-                self.speed /= self.speed_boost  # Повернення швидкості до нормального рівня
+                self.speed /= self.speed_boost
                 self.boost_timer = 0
 
-        if self.teleport_target:
-            is_collision = False
-            for sprite in self.collision_sprites:
-                if sprite.rect.collidepoint(self.teleport_target):
-                    is_collision = True
-                    break
-            if not is_collision:
-                self.rect.center = self.teleport_target
-                self.collision('horizontal')  # Додати обробку колізій після телепортації
-                self.collision('vertical')  # Додати обробку колізій після телепортації
-            self.teleport_target = None
+        self.try_teleport()
 
     def set_transparency(self, alpha):
         for img_list in [self.sprite_down, self.sprite_left, self.sprite_right, self.sprite_up]:
@@ -317,21 +307,21 @@ class Player(pygame.sprite.Sprite):
         if not self.is_invisible:
             self.is_invisible = True
             self.invisibility_start_time = pygame.time.get_ticks()
-            self.set_transparency(128)  # 50% transparency
+            self.set_transparency(128)
 
     def deactivate_invisibility(self):
         self.is_invisible = False
-        self.set_transparency(255)  # Reset transparency to 100%
+        self.set_transparency(255)
 
     def activate_speed_boost(self):
         if self.boost_timer == 0:
-            self.speed *= self.speed_boost  # Збільшення швидкості гравця
+            self.speed *= self.speed_boost
 
         self.boost_timer = pygame.time.get_ticks()
 
     def shrink_player(self):
-        self.rect.size = (self.rect.width // 2, self.rect.height // 2)  # Зменшення розміру персонажа
-        # Зменшення розміру зображень
+        self.rect.size = (self.rect.width // 2, self.rect.height // 2)
+
         self.sprite_down = [pygame.transform.scale(image, (image.get_width() // 2, image.get_height() // 2)) for image
                             in self.original_images["down"]]
         self.sprite_left = [pygame.transform.scale(image, (image.get_width() // 2, image.get_height() // 2)) for image
@@ -340,10 +330,13 @@ class Player(pygame.sprite.Sprite):
                              in self.original_images["right"]]
         self.sprite_up = [pygame.transform.scale(image, (image.get_width() // 2, image.get_height() // 2)) for image
                           in self.original_images["up"]]
-        self.shrink_timer = pygame.time.get_ticks()  # Встановлення таймера зменшення персонажа
+        self.shrink_timer = pygame.time.get_ticks()
 
     def reset_images(self):
         self.sprite_down = self.original_images["down"].copy()
         self.sprite_left = self.original_images["left"].copy()
         self.sprite_right = self.original_images["right"].copy()
         self.sprite_up = self.original_images["up"].copy()
+
+    def up_level_UI(self):
+        LevelUpUI(self.groups, self)

@@ -1,23 +1,11 @@
-from enum import Enum
-import random
 from os.path import join
-
 from Quests import Quests
-from FortuneUI import FortuneUI
-from ItemType import ItemType
-from Item import Item
-from NPC import NPC
-from PlayerData import available_items
-from Settings import *
-
-from enum import Enum
 import random
 import pygame
 from FortuneUI import FortuneUI
 from ItemType import ItemType
 from Item import Item
 from NPC import NPC
-from PlayerData import available_items
 
 
 class Fortune(NPC):
@@ -45,19 +33,20 @@ class Fortune(NPC):
             if random_number == 0:
                 # fail
                 message = "Oh no, fortune isn't on your side today. You have got no presents."
-                Sounds().fortune_fail_sound.play()
+                self.player.sound.fortune_fail_sound.play()
                 self.upd_data()
             elif random_number == 1:
                 # health
-                Sounds().fortune_health_sound.play()
+                self.player.sound.fortune_health_sound.play()
                 random_health = random.randint(0, 4)
-                self.player.player_data.health = min(self.player.player_data.health + self.health_set[random_health], 100)
+                self.player.player_data.health = min(self.player.player_data.health + self.health_set[random_health],
+                                                     100)
                 message = f"You receive some vitamins to stay healthy! Your XP has been risen by {self.health_set[random_health]}."
                 item_icon = pygame.image.load(join('graphics', 'objects', 'health.png')).convert_alpha()
                 self.upd_data()
             elif random_number == 2:
                 # coin
-                Sounds().fortune_coin_sound.play()
+                self.player.sound.fortune_coin_sound.play()
                 random_coins = random.randint(0, 17)
                 self.player.player_data.coins += self.coins_set[random_coins]
                 self.player.player_data.earned_coins_level += self.coins_set[random_coins]
@@ -66,20 +55,22 @@ class Fortune(NPC):
                 self.upd_data()
             elif random_number == 3:
                 # equipment
-                Sounds().fortune_equipment_sound.play()
+                self.player.sound.fortune_equipment_sound.play()
                 random_element = random.choice(item_types)
                 random_amount = random.randint(1, 5)
                 self.player.player_data.inventory.add_item(Item(random_element, random_amount))
-                message = f"It seems to me, that {random_amount} {random_element.value[5]} will be useful for your missions!"
-                item_icon = random_element.value[4]
+                message = f"It seems to me, that {random_amount} {random_element.name} will be useful for your missions!"
+                item_icon = pygame.image.load(random_element.image).convert_alpha()
                 self.upd_data()
-            if self.player.player_data.quest is not None and self.player.player_data.quest.quest == Quests.MAGIC_DUEL:
+            if self.player.player_data.quest is not None \
+                    and (self.player.player_data.quest.quest == Quests.MAGIC_DUEL or self.player.player_data.quest.quest == Quests.THE_LUCKY):
                 self.player.player_data.quest.specific_cond = True
         self.FortuneUI = FortuneUI(self.groups, self.player, self, message, item_icon)
 
     def upd_data(self):
-        self.fortune_timer = 120000 #2 minutes
+        self.fortune_timer = 120000  # 2 minutes
         self.current_dialogue = '003'
+
     def dialogue(self):
         responses, last_dialogue = super().dialogue()
         if len(responses) > 0 and responses[0] == 0:
@@ -89,5 +80,5 @@ class Fortune(NPC):
         super().update(dt)
         if self.current_dialogue.__eq__('003') and self.fortune_timer > 0:
             self.fortune_timer -= 1
-        elif self.current_dialogue == '003' and self.fortune_timer == 0:
+        elif self.current_dialogue == '003' and self.fortune_timer <= 0:
             self.current_dialogue = '000'

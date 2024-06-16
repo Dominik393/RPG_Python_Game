@@ -1,9 +1,5 @@
-from Settings import *
-from Item import Item
-from Inventory import Inventory
-
 class EntityData:
-    def __init__(self, health, max_health, power, magic_power = 0, skills = None):
+    def __init__(self, health, max_health, power, magic_power=0, skills=None):
         if health < 0:
             raise ValueError("Health cannot be negative")
         if power < 0:

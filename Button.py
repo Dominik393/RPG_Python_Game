@@ -1,5 +1,4 @@
 import pygame.font
-
 from Settings import *
 
 class Button:

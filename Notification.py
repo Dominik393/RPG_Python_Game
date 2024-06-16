@@ -1,13 +1,15 @@
 from Settings import *
 
-# create a class for the notification that will be displayed on the screen. Notification appears in a rectangle that scrolls
-# from the top of the screen to chosen position and then disappears
+# create a class for the notification that will be displayed on the screen. Notification appears in a rectangle that
+# scrolls from the top of the screen to chosen position and then disappears
+
+
 class Notification(pygame.sprite.Sprite):
-    def __init__(self, message, y = 100, font_size=30, color=(255, 255, 255), background_color=(0, 0, 0), time=50):
+    def __init__(self, message, y=100, font_size=30, color=(255, 255, 255), background_color=(0, 0, 0), time=50):
         super().__init__()
 
         self.message = message
-        self.x = WINDOW_WIDTH//2
+        self.x = WINDOW_WIDTH // 2
         self.y = y
         self.font_size = font_size
         self.color = color
@@ -47,8 +49,6 @@ class Notification(pygame.sprite.Sprite):
                 self.current_y = 0
                 return True
 
-
     def draw(self, display_surface):
         display_surface.blit(self.image, (self.x, self.current_y))
         display_surface.blit(self.text, (self.x + 5, self.current_y + 5))
-

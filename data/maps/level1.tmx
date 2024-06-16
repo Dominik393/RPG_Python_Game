@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="15" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="107">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="15" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="108">
  <tileset firstgid="1" name="Questgiver" tilewidth="48" tileheight="48" tilecount="3" columns="3">
   <image source="../../graphics/npc/Questgiver/texture.png" width="144" height="48"/>
  </tileset>
@@ -41,6 +41,21 @@
  </tileset>
  <tileset firstgid="144" name="secret" tilewidth="48" tileheight="48" tilecount="1" columns="1">
   <image source="../../graphics/objects/fortune.png" width="48" height="48"/>
+ </tileset>
+ <tileset firstgid="145" name="Glasser" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/glasser/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="157" name="Hatter" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/hatter/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="169" name="UglyAngel" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/ugly_angel/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="181" name="Winged" tilewidth="48" tileheight="48" tilecount="12" columns="12">
+  <image source="../../graphics/enemies/Winged/texture.png" width="576" height="48"/>
+ </tileset>
+ <tileset firstgid="193" name="health" tilewidth="48" tileheight="48" tilecount="1" columns="1">
+  <image source="../../graphics/objects/health.png" width="48" height="48"/>
  </tileset>
  <layer id="6" name="BG" width="30" height="15">
   <data encoding="csv">
@@ -139,5 +154,6 @@
   <object id="104" name="tree" gid="129" x="882.333" y="804.667" width="64" height="64"/>
   <object id="105" name="tree" gid="117" x="928.333" y="740.667" width="64" height="64"/>
   <object id="106" name="tree" gid="105" x="849" y="735.333" width="64" height="64"/>
+  <object id="107" name="health" gid="193" x="1233.33" y="155.333" width="48" height="48"/>
  </objectgroup>
 </map>

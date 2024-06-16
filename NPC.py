@@ -9,7 +9,6 @@ class NPC(pygame.sprite.Sprite):
         super().__init__([groups, collision_sprites])
         self.groups = groups
         self.image = pygame.Surface((38, 50))
-        # self.image.fill('red')
         self.rect = self.image.get_frect(topleft=pos)
 
         self.dialogue_data = Dialogue(f'graphics/npc/{self.__class__.__name__}/dialogue.json')
@@ -33,8 +32,8 @@ class NPC(pygame.sprite.Sprite):
     def dialogue(self):
         ui = UI(self, self.dialogue_data, self.current_dialogue)
         responses, last_dialogue = ui.run()
-        Sounds().background_sound.set_volume(0.05)
-        Sounds().npc_sound.set_volume(0.0)
+        self.player.sound.background_sound.set_volume(0.05)
+        self.player.sound.npc_sound.set_volume(0.0)
         self.last_input_time = pygame.time.get_ticks()
 
         return responses, last_dialogue
@@ -50,11 +49,12 @@ class NPC(pygame.sprite.Sprite):
         if current_time - self.last_input_time >= self.time_between_inputs:
             if self.is_active() and not self.player.is_invisible:
                 keys = pygame.key.get_pressed()
-                if keys[pygame.K_RETURN]:
-                    Sounds().background_sound.set_volume(0.0)
-                    Sounds().npc_sound.set_volume(0.45)
-                    Sounds().npc_sound.play(-1)
+                if keys[pygame.K_RETURN] and not self.player.paused:
+                    self.player.sound.background_sound.set_volume(0.0)
+                    self.player.sound.npc_sound.set_volume(0.45)
+                    self.player.paused = True
                     self.dialogue()
+                    self.player.paused = False
 
     def update(self, dt):
         self.timer += 1

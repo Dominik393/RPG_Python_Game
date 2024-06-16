@@ -1,5 +1,5 @@
-import pygame.image
 import json
+import pygame.image
 
 
 class SpritesSheet:

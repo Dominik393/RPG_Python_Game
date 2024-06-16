@@ -1,8 +1,8 @@
-import pygame
 from Settings import *
 
+
 class UI:
-    def __init__(self, NPC, dialogue_data, current_dialogue):
+    def __init__(self, npc, dialogue_data, current_dialogue):
         self.display_surface = pygame.display.get_surface()
         self.image = pygame.Surface((WINDOW_WIDTH, WINDOW_HEIGHT / 4))
         self.image.fill('black')
@@ -12,7 +12,7 @@ class UI:
         self.current_dialogue = current_dialogue
         self.response_keys = [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5,
                               pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9, pygame.K_0]
-        self.NPC = NPC
+        self.NPC = npc
 
     def get_text(self):
         return self.dialogue_data.parse_text(self.current_dialogue)
@@ -20,7 +20,6 @@ class UI:
     def show(self):
         self.display_surface.blit(self.image, self.rect.topleft)
         pygame.display.flip()
-
 
     def render_end_dialogue_prompt(self):
         font = pygame.freetype.Font(None, 24)
@@ -51,11 +50,10 @@ class UI:
     def render_responses(self, responses):
         font = pygame.freetype.Font(None, 24)
         for i, response in enumerate(responses):
-            response_text = f"{i+1}: {response}"
+            response_text = f"{i + 1}: {response}"
             response_surface, _ = font.render(response_text, 'white', 'black')
             self.image.blit(response_surface, (10, self.rect.height - (len(responses) - i) * 30))
         self.show()
-
 
     def run(self):
         end, text_ended = False, False

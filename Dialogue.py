@@ -1,8 +1,6 @@
 import json
 
 
-# można wyciągać text z jsona, który znajduje się w folderze NPC z odpowiednim ID, logika parsowania podobna jak z
-# Spritesheet
 class Dialogue:
     def __init__(self, filename):
         self.filename = filename

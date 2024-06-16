@@ -1,5 +1,3 @@
-from Settings import *
-
 class StatusEffects:
     def __init__(self):
         self.protected = False

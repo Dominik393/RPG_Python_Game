@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level1.tmx",
+    "activeFile": "level3.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -60,8 +60,8 @@
             "scale": 0.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 918,
-                "y": 269
+                "x": 906,
+                "y": 411
             }
         },
         "level1.tmx#Coins": {
@@ -72,6 +72,14 @@
         },
         "level1.tmx#Fortune": {
             "scaleInDock": 1
+        },
+        "level1.tmx#Glasser": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level1.tmx#Hatter": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "level1.tmx#Informator": {
             "scaleInDock": 1
@@ -86,13 +94,23 @@
         "level1.tmx#Shopkeeper": {
             "scaleInDock": 1
         },
+        "level1.tmx#UglyAngel": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "level1.tmx#Wilddog": {
+            "scaleInDock": 1
+        },
+        "level1.tmx#Winged": {
             "scaleInDock": 1
         },
         "level1.tmx#Zombie": {
             "scaleInDock": 1
         },
         "level1.tmx#ask": {
+            "scaleInDock": 1
+        },
+        "level1.tmx#health": {
             "scaleInDock": 1
         },
         "level1.tmx#info": {
@@ -107,6 +125,156 @@
         "level1.tmx#tileset": {
             "scaleInDock": 0.5,
             "scaleInEditor": 1
+        },
+        "level2.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 0.33,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 772.7272727272727,
+                "y": 762.1212121212121
+            }
+        },
+        "level2.tmx#Coins": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#Draft": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#Fortune": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#Glasser": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#Hatter": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#Informator": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#Player": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#Questgiver": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#Shopkeeper": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#UglyAngel": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level2.tmx#Wilddog": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level2.tmx#Winged": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level2.tmx#Zombie": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#ask": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#brown_buttons": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#health": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#info": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#secret": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#shop": {
+            "scaleInDock": 1
+        },
+        "level2.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "level3.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 0.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 858,
+                "y": 567
+            }
+        },
+        "level3.tmx#Coins": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Draft": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level3.tmx#Fortune": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Glasser": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Hatter": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Informator": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Player": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Questgiver": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Shopkeeper": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#UglyAngel": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "level3.tmx#Wilddog": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Winged": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#Zombie": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#ask": {
+            "scaleInDock": 1.5
+        },
+        "level3.tmx#blue_ball": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#brown_buttons": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#health": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#info": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#secret": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#shop": {
+            "scaleInDock": 1
+        },
+        "level3.tmx#tileset": {
+            "scaleInDock": 0.75
         },
         "test map.tmx": {
             "expandedObjectLayers": [
@@ -136,11 +304,15 @@
     "map.tileWidth": 64,
     "map.width": 60,
     "openFiles": [
-        "level1.tmx"
+        "level1.tmx",
+        "level3.tmx",
+        "level2.tmx"
     ],
     "project": "maps.tiled-project",
     "recentFiles": [
         "level1.tmx",
+        "level2.tmx",
+        "level3.tmx",
         "test map.tmx",
         "D:/AGH/4 semestr/Python/RPG_Python_Game/data/levels/level1.tmx"
     ],

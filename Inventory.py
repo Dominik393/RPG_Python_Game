@@ -60,6 +60,5 @@ class Inventory:
         for i in range(self.columns):
             for j in range(self.rows):
                 if self.inventory[i][j] != 0 and self.inventory[i][j].item_type == item.item_type:
-                    print(self.inventory[i][j], self.inventory[i][j].item_type, item.item_type)
                     return self.inventory[i][j].amount
         return 0

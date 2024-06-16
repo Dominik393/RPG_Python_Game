@@ -41,7 +41,7 @@
 			"type": "response",
 			"npc_name": "Questgiver",
 			"portrait_id": "neutral",
-			"text": "My first task for you is to explore the world! I think, you could buy one more thread to extend your equipment and earn 10 coins. It will be perfect start! You can an find information about your quest opening QuestBar on the left side of screen.",
+			"text": "My first task for you is to explore the world! I think, you could buy one more thread to extend your equipment and earn 10 coins. It will be perfect start! You can find an information about your quest opening QuestBar on the left side of screen.",
 			"responses": {},
 			"commands": []
 		},
@@ -64,7 +64,7 @@
 			"type": "response",
 			"npc_name": "Questgiver",
 			"portrait_id": "neutral",
-			"text": "Your task is to defeat one of the enemies. However, try your luck first, maybe it will bring you something interesting! You can an find information about your quest opening QuestBar on the left side of screen.",
+			"text": "Your task is to defeat one of the enemies. However, try your luck first, maybe it will bring you something interesting! You can find an information about your quest opening QuestBar on the left side of screen.",
 			"responses": {},
 			"commands": []
 		},
@@ -87,7 +87,7 @@
 			"type": "response",
 			"npc_name": "Questgiver",
 			"portrait_id": "neutral",
-			"text": "I think, that now you are ready to defeat all the enemies of our magical world. However, don't forget to buy some gear to get stronger! You can an find information about your quest opening QuestBar on the left side of screen.",
+			"text": "I think, that now you are ready to defeat all the enemies of our magical world. However, don't forget to buy some equipment to get stronger! You can find an information about your quest opening QuestBar on the left side of screen.",
 			"responses": {},
 			"commands": []
 		},
@@ -96,9 +96,195 @@
 			"npc_name": "Questgiver",
 			"portrait_id": "neutral",
 			"text": "You are good! All tasks on this level are done. Let`s go to the next level!",
+			"responses": {},
+			"commands": []
+		},
+		"007": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Nice to meet you again! I hope, you rested well and are ready for new challenges.",
+			"responses": {"Hi, Questgiver! Everything is fine with me, I have already gathered my strength for new tasks!": {
+					"next": "008"
+				}},
+			"commands": []
+		},
+		"008": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "I am glad to hear that. Would you like to deal with the first task?",
 			"responses": {
-
+				"Let`s start!": {
+					"next": "009"
+				},
+				"I'm sorry, but I can't help you right now...": {
+					"next": "2000"
+				}
 			},
+			"commands": [
+				"show_tasks"
+			]
+		},
+		"009": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Unfortunately, I lost my brown buttons. Please find them and also buy a diamond for future magical battles! You can find an information about your quest opening QuestBar on the left side of screen.",
+			"responses": {},
+			"commands": []
+		},
+		"010": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Yeah, super start! And now I have the next task for you. Are you interested in doing it now?",
+			"responses": {
+				"Yes, I have plenty of time": {
+					"next": "011"
+				},
+				"Sounds great, but maybe not now. I will come later!": {
+					"next": "2000"
+				}
+			},
+			"commands": []
+		},
+		"011": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "It seems to me, that at this moment you are experienced magician. Earn 10 coins and fight 4 enemies - the best way is to choose those you have already encountered. You can find an information about your quest opening QuestBar on the left side of screen.",
+			"responses": {},
+			"commands": []
+		},
+		"012": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Excellent result! I have the last task for you at this level. Do you want to start it now?",
+			"responses": {
+				"Undoubtedly, I am ready to start!": {
+					"next": "013"
+				},
+				"Hm, this task is going to be a hard one. I want to prepare for it longer.": {
+					"next": "2000"
+				}
+			},
+			"commands": []
+		},
+		"013": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "It is the best moment to fight with all the enemies of our magical world, especially with 2 new FASHION ENEMIES. However, don't forget to buy some equipment to get stronger! You can find an information about your quest opening QuestBar on the left side of screen.",
+			"responses": {},
+			"commands": []
+		},
+		"014": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Perfect! All tasks on this level are done. Let`s go to the next level!",
+			"responses": {},
+			"commands": []
+		},
+		"015": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "I am glad to see you here! Have you recovered all your strength after the ordeal?",
+			"responses": {"Hello! Yes, I am full of energy to continue helping you!": {
+					"next": "016"
+				}},
+			"commands": []
+		},
+		"016": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Sounds great. Do you want to start new tasks for this level?",
+			"responses": {
+				"Yes, I listen to you carefully!": {
+					"next": "017"
+				},
+				"I think I need a little more time to rest. See you later!": {
+					"next": "2000"
+				}
+			},
+			"commands": [
+				"show_tasks"
+			]
+		},
+		"017": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "To start with, try your fortune and fight with 2 enemies! You can find an information about your quest opening QuestBar on the left side of screen.",
+			"responses": {},
+			"commands": []
+		},
+		"018": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "I had no doubt that you would manage. I already have the next task. Shall we start?",
+			"responses": {
+				"No problem. Let's start!": {
+					"next": "019"
+				},
+				"Maybe a little bit later. I would like to relax some time!": {
+					"next": "2000"
+				}
+			},
+			"commands": []
+		},
+		"019": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "I know, that you are strong enough to win in 4 duels! However, don't forget to buy some equipment... Oh no! I have lost my blue ball. Find it, please! You can find an information about your quest opening QuestBar on the left side of screen.",
+			"responses": {},
+			"commands": []
+		},
+		"020": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "No exaggeration, it was legendary! The last challenge is waiting for you. Would you like to start it now?",
+			"responses": {
+				"Hm... Yes, I'm ready to start!": {
+					"next": "021"
+				},
+				"Sounds like a very responsible task. I need some time to prepare!": {
+					"next": "2000"
+				}
+			},
+			"commands": []
+		},
+		"021": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Now you have to win all the enemies of our magical world, especially 2 new enemies. However, you also need to buy a sleeping flower and try any moving skill! You can find an information about your quest opening QuestBar on the left side of screen.",
+			"responses": {},
+			"commands": []
+		},
+		"022": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "Wonderful result! All tasks on this level are completed.",
+			"responses": {"Yeahhh!!! And what`s next?": {
+					"next": "023"
+				}},
+			"commands": []
+		},
+		"023": {
+			"type": "response",
+			"npc_name": "Questgiver",
+			"portrait_id": "neutral",
+			"text": "My friend, I am very sad, but that is all! You have completed all the tasks and I have no more new ones for you!",
+			"responses": {},
 			"commands": []
 		}
 	}
