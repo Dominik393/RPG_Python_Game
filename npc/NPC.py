@@ -11,12 +11,12 @@ class NPC(pygame.sprite.Sprite):
         self.image = pygame.Surface((38, 50))
         self.rect = self.image.get_frect(topleft=pos)
 
-        self.dialogue_data = Dialogue(f'resources/graphics/npc/{self.__class__.__name__}/dialogue.json')
+        self.dialogue_data = Dialogue(join('..', 'resources', 'graphics', 'npc', self.__class__.__name__, 'dialogue.json'))
         self.current_dialogue = current_dialogue
         self.start_dialogue = current_dialogue
         self.old_rect = self.rect.copy()
 
-        my_spritesheet = SpritesSheet(f'resources/graphics/npc/{self.__class__.__name__}/texture.png')
+        my_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'npc', self.__class__.__name__, 'texture.png'))
         self.sprite_stable = [my_spritesheet.parse_sprite('1.png'), my_spritesheet.parse_sprite('2.png'),
                               my_spritesheet.parse_sprite('3.png')]
 

@@ -34,7 +34,7 @@ class Player(pygame.sprite.Sprite):
 
         self.not_used_skills = True
 
-        my_spritesheet = SpritesSheet(f'resources/graphics/player/{skin}/texture.png')
+        my_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'player', f'{skin}', 'texture.png'))
         self.sprite_down = [my_spritesheet.parse_sprite('1.png'), my_spritesheet.parse_sprite('2.png'),
                             my_spritesheet.parse_sprite('3.png')]
         self.sprite_left = [my_spritesheet.parse_sprite('4.png'), my_spritesheet.parse_sprite('5.png'),

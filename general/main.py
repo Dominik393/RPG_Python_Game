@@ -17,9 +17,9 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.player_data = None
-        self.tmx_maps = {1: load_pygame(join('resources/data', 'maps', 'level1.tmx')),
-                         2: load_pygame(join('resources/data', 'maps', 'level2.tmx')),
-                         3: load_pygame(join('resources/data', 'maps', 'level3.tmx'))}
+        self.tmx_maps = {1: load_pygame(join('..', 'resources', 'data', 'maps', 'level1.tmx')),
+                         2: load_pygame(join('..', 'resources', 'data', 'maps', 'level2.tmx')),
+                         3: load_pygame(join('..', 'resources', 'data', 'maps', 'level3.tmx'))}
 
         self.current_stage = None
 

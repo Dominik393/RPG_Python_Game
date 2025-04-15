@@ -7,7 +7,7 @@ class LevelUpUI(WindowUI):
     def __init__(self, groups, player):
         super().__init__(groups, player)
 
-        self.background_image = pygame.image.load(join('resources/graphics', 'objects', 'level_up.png')).convert_alpha()
+        self.background_image = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'level_up.png')).convert_alpha()
 
         self.background_image = pygame.transform.scale(self.background_image, (WINDOW_WIDTH * 0.7, WINDOW_HEIGHT * 0.7))
 

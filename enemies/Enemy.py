@@ -15,7 +15,7 @@ class Enemy(pygame.sprite.Sprite):
 
         self.start_power = power
 
-        my_spritesheet = SpritesSheet(f'resources/graphics/enemies/{self.name}/texture.png')
+        my_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'enemies', self.name, 'texture.png'))
         self.sprite_down = [my_spritesheet.parse_sprite('1.png'), my_spritesheet.parse_sprite('2.png'),
                             my_spritesheet.parse_sprite('3.png')]
         self.sprite_left = [my_spritesheet.parse_sprite('4.png'), my_spritesheet.parse_sprite('5.png'),

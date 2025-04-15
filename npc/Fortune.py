@@ -42,7 +42,7 @@ class Fortune(NPC):
                 self.player.player_data.health = min(self.player.player_data.health + self.health_set[random_health],
                                                      100)
                 message = f"You receive some vitamins to stay healthy! Your XP has been risen by {self.health_set[random_health]}."
-                item_icon = pygame.image.load(join('resources/graphics', 'objects', 'health.png')).convert_alpha()
+                item_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'health.png')).convert_alpha()
                 self.upd_data()
             elif random_number == 2:
                 # coin
@@ -51,7 +51,7 @@ class Fortune(NPC):
                 self.player.player_data.coins += self.coins_set[random_coins]
                 self.player.player_data.earned_coins_level += self.coins_set[random_coins]
                 message = f"Wow! You are going to be rich. {self.coins_set[random_coins]} coins for you!"
-                item_icon = pygame.image.load(join('resources/graphics', 'objects', 'coin.png')).convert_alpha()
+                item_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'coin.png')).convert_alpha()
                 self.upd_data()
             elif random_number == 3:
                 # equipment

@@ -11,7 +11,7 @@ class QuestItem(pygame.sprite.Sprite):
 
         self.name = name
 
-        self.image = pygame.image.load(join('resources/graphics', 'objects', 'items', f'{name}.png'))
+        self.image = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'items', f'{name}.png'))
         self.player = player
 
     def update(self, dt):

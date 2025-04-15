@@ -1,4 +1,5 @@
 import pickle
+from os.path import join
 
 
 def create_save(player_data, current_skin, player_name):
@@ -9,14 +10,14 @@ def create_save(player_data, current_skin, player_name):
     }
 
     # Create a save file
-    with open('resources/saves/save.pkl', 'wb') as f:
+    with open(join('..', 'resources', 'saves', 'save.pkl'), 'wb') as f:
         pickle.dump(save, f)
 
 
 def load_save():
     # Return if there is no save file
     try:
-        with open('resources/saves/save.pkl', 'rb') as f:
+        with open(join('..', 'resources', 'saves', 'save.pkl'), 'rb') as f:
             save = pickle.load(f)
     except FileNotFoundError:
         return None

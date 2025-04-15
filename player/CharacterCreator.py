@@ -66,7 +66,7 @@ def create_character(sound):
         display_surface.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
         pygame.draw.rect(display_surface, color, input_box, 2)
 
-        my_spritesheet = SpritesSheet(join('resources/graphics', 'player', f'{current_skin + 1}', 'texture.png'))
+        my_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'player', f'{current_skin + 1}', 'texture.png'))
         sprite_down = my_spritesheet.parse_sprite('2.png')
         skin_view = pygame.transform.scale(sprite_down, (200, 200))
         display_surface.blit(skin_view, (WINDOW_WIDTH / 2 - 110, 300))
@@ -100,7 +100,7 @@ def create_character(sound):
                                       True, (255, 255, 255))
         display_surface.blit(skill_data_text, (skill_x - 70, skill_y + skill_surface.get_height()))
 
-        arrows_image = pygame.image.load(join("resources/graphics", "buttons", "arrow_keys.png")).convert_alpha()
+        arrows_image = pygame.image.load(join("..", "resources", "graphics", "buttons", "arrow_keys.png")).convert_alpha()
         arrows_width, arrows_height = arrows_image.get_size()
         left_arrow = arrows_image.subsurface(0, 0, arrows_width / 4, arrows_height)
         right_arrow = arrows_image.subsurface(arrows_width / 4 * 3, 0, arrows_width / 4, arrows_height)

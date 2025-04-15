@@ -6,7 +6,7 @@ class TimerWindow(WindowUI):
     def __init__(self, groups, player):
         super().__init__(groups, player)
         self.message = "Please, wait 30 second before using any of your skills again!"
-        self.item_icon = pygame.image.load(join('resources/graphics', 'objects', 'timer.png')).convert_alpha()
+        self.item_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'timer.png')).convert_alpha()
 
         self.image.fill('white')
         self.rect = self.image.get_rect(center=(self.player.rect.centerx, self.player.rect.centery))

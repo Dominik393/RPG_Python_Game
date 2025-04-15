@@ -4,36 +4,36 @@ from Settings import *
 class GameSound:
     def __init__(self):
         self.audio_files = {
-            'background': pygame.mixer.Sound(join('resources/audio', 'background.mp3')),
-            'npc': pygame.mixer.Sound(join('resources/audio', 'npc.mp3')),
-            'coin': pygame.mixer.Sound(join('resources/audio', 'coin.wav')),
-            'jump': pygame.mixer.Sound(join('resources/audio', 'jump.wav')),
-            'up_level': pygame.mixer.Sound(join('resources/audio', 'up_level.wav')),
-            'quest_done': pygame.mixer.Sound(join('resources/audio', 'quest_done.mp3')),
-            'fight': pygame.mixer.Sound(join('resources/audio', 'fight.mp3')),
-            'fight_win': pygame.mixer.Sound(join('resources/audio', 'fight_win.mp3')),
-            'fight_lost': pygame.mixer.Sound(join('resources/audio', 'fight_lost.mp3')),
-            'skill_activate': pygame.mixer.Sound(join('resources/audio', 'skill_activate.mp3')),
-            'timer': pygame.mixer.Sound(join('resources/audio', 'timer.mp3')),
-            'fortune_fail': pygame.mixer.Sound(join('resources/audio', 'fortune_fail.wav')),
-            'fortune_health': pygame.mixer.Sound(join('resources/audio', 'fortune_health.mp3')),
-            'fortune_coin': pygame.mixer.Sound(join('resources/audio', 'fortune_coin.mp3')),
-            'fortune_equipment': pygame.mixer.Sound(join('resources/audio', 'fortune_equipment.mp3')),
-            'skill_small': pygame.mixer.Sound(join('resources/audio', 'skill_small.mp3')),
-            'mouse_click': pygame.mixer.Sound(join('resources/audio', 'mouse_click.mp3')),
-            'money': pygame.mixer.Sound(join('resources/audio', 'money.wav')),
-            'attack': pygame.mixer.Sound(join('resources/audio', 'attack.wav')),
-            'start_game': pygame.mixer.Sound(join('resources/audio', 'start_game.mp3')),
-            'quest_item': pygame.mixer.Sound(join('resources/audio', 'quest_item.wav')),
-            'health': pygame.mixer.Sound(join('resources/audio', 'health.mp3')),
+            'background': pygame.mixer.Sound(join('..', 'resources', 'audio', 'background.mp3')),
+            'npc': pygame.mixer.Sound(join('..', 'resources', 'audio', 'npc.mp3')),
+            'coin': pygame.mixer.Sound(join('..', 'resources', 'audio', 'coin.wav')),
+            'jump': pygame.mixer.Sound(join('..', 'resources', 'audio', 'jump.wav')),
+            'up_level': pygame.mixer.Sound(join('..', 'resources', 'audio', 'up_level.wav')),
+            'quest_done': pygame.mixer.Sound(join('..', 'resources', 'audio', 'quest_done.mp3')),
+            'fight': pygame.mixer.Sound(join('..', 'resources', 'audio', 'fight.mp3')),
+            'fight_win': pygame.mixer.Sound(join('..', 'resources', 'audio', 'fight_win.mp3')),
+            'fight_lost': pygame.mixer.Sound(join('..', 'resources', 'audio', 'fight_lost.mp3')),
+            'skill_activate': pygame.mixer.Sound(join('..', 'resources', 'audio', 'skill_activate.mp3')),
+            'timer': pygame.mixer.Sound(join('..', 'resources', 'audio', 'timer.mp3')),
+            'fortune_fail': pygame.mixer.Sound(join('..', 'resources', 'audio', 'fortune_fail.wav')),
+            'fortune_health': pygame.mixer.Sound(join('..', 'resources', 'audio', 'fortune_health.mp3')),
+            'fortune_coin': pygame.mixer.Sound(join('..', 'resources', 'audio', 'fortune_coin.mp3')),
+            'fortune_equipment': pygame.mixer.Sound(join('..', 'resources', 'audio', 'fortune_equipment.mp3')),
+            'skill_small': pygame.mixer.Sound(join('..', 'resources', 'audio', 'skill_small.mp3')),
+            'mouse_click': pygame.mixer.Sound(join('..', 'resources', 'audio', 'mouse_click.mp3')),
+            'money': pygame.mixer.Sound(join('..', 'resources', 'audio', 'money.wav')),
+            'attack': pygame.mixer.Sound(join('..', 'resources', 'audio', 'attack.wav')),
+            'start_game': pygame.mixer.Sound(join('..', 'resources', 'audio', 'start_game.mp3')),
+            'quest_item': pygame.mixer.Sound(join('..', 'resources', 'audio', 'quest_item.wav')),
+            'health': pygame.mixer.Sound(join('..', 'resources', 'audio', 'health.mp3')),
         }
 
-        self.background_sound = pygame.mixer.Sound(join('resources/audio', 'background.mp3'))
+        self.background_sound = pygame.mixer.Sound(join('..', 'resources', 'audio', 'background.mp3'))
         self.background_sound.set_volume(0.05)
 
-        self.menu_sound = pygame.mixer.Sound(join('resources/audio', 'menu_button.mp3'))
+        self.menu_sound = pygame.mixer.Sound(join('..', 'resources', 'audio', 'menu_button.mp3'))
         self.menu_sound.set_volume(2.0)
-        self.arrow_sound = pygame.mixer.Sound(join('resources/audio', 'arrows.flac'))
+        self.arrow_sound = pygame.mixer.Sound(join('..', 'resources', 'audio', 'arrows.flac'))
 
         self.coin_sound = self.audio_files['coin']
         self.coin_sound.set_volume(0.3)

@@ -6,7 +6,7 @@ class FightLostUI(WindowUI):
     def __init__(self, groups, player):
         super().__init__(groups, player)
         self.message = "You lost this battle. Wait a while for your strength to recover to continue."
-        self.item_icon = pygame.image.load(join('resources/graphics', 'objects', 'health.png')).convert_alpha()
+        self.item_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'health.png')).convert_alpha()
 
         self.image.fill('white')
         self.rect = self.image.get_rect(center=(self.player.rect.centerx, self.player.rect.centery))

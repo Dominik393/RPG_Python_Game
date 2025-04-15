@@ -8,9 +8,9 @@ class QuestsUI(WindowUI):
     def __init__(self, groups, player):
         super().__init__(groups, player)
 
-        self.coin_icon = pygame.image.load(join('resources/graphics', 'objects', 'coin.png')).convert_alpha()
-        self.health_icon = pygame.image.load(join('resources/graphics', 'objects', 'health.png')).convert_alpha()
-        self.exp_icon = pygame.image.load(join('resources/graphics', 'objects', 'exp.png')).convert_alpha()
+        self.coin_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'coin.png')).convert_alpha()
+        self.health_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'health.png')).convert_alpha()
+        self.exp_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'exp.png')).convert_alpha()
 
         self.image.fill('white')
         self.rect = self.image.get_rect(center=(self.player.rect.centerx, self.player.rect.centery))
@@ -22,10 +22,10 @@ class QuestsUI(WindowUI):
 
         if self.player.player_data.quest is None:
             self.message = "You haven`t any quests now. You can ask Questgiver about them!"
-            self.ui_image = pygame.image.load(join('resources/graphics', 'objects', 'ask.png'))
+            self.ui_image = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'ask.png')).convert_alpha()
         elif self.player.player_data.quest.isDone(self.player.player_data):
             self.message = "You have completed all quest tasks. Meet the Questgiver to get prize!"
-            self.ui_image = pygame.image.load(join('resources/graphics', 'objects', 'done.png'))
+            self.ui_image = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'done.png')).convert_alpha()
         else:
             self.message = "Your quest: " + self.player.player_data.quest.quest.name
             self.additional_message = self.player.player_data.quest.quest.text

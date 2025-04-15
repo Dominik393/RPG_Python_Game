@@ -35,7 +35,7 @@ class Level:
 
         self.player = None
 
-        self.background_image = pygame.image.load(join('resources/data', 'maps', 'grass.png')).convert()
+        self.background_image = pygame.image.load(join('..', 'resources', 'data', 'maps', 'grass.png')).convert()
         self.bg_width, self.bg_height = self.background_image.get_size()
 
         self.setup(tmx_map)

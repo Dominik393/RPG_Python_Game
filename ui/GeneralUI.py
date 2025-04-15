@@ -19,12 +19,12 @@ class GeneralUI:
         self.font = pygame.freetype.Font(None, 30)
         self.small_font = pygame.freetype.Font(None, 16)
 
-        self.coin_icon = pygame.image.load(join('resources/graphics', 'objects', 'coin.png')).convert_alpha()
-        self.power_icon = pygame.image.load(join('resources/graphics', 'objects', 'power.png')).convert_alpha()
-        self.health_icon = pygame.image.load(join('resources/graphics', 'objects', 'health.png')).convert_alpha()
-        self.timer_icon = pygame.image.load(join('resources/graphics', 'objects', 'timer.png')).convert_alpha()
-        self.quests_icon = pygame.image.load(join('resources/graphics', 'objects', 'quests.png')).convert_alpha()
-        self.exp_icon = pygame.image.load(join('resources/graphics', 'objects', 'exp.png')).convert_alpha()
+        self.coin_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'coin.png')).convert_alpha()
+        self.power_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'power.png')).convert_alpha()
+        self.health_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'health.png')).convert_alpha()
+        self.timer_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'timer.png')).convert_alpha()
+        self.quests_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'quests.png')).convert_alpha()
+        self.exp_icon = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'exp.png')).convert_alpha()
 
     def create_inventory(self):
         self.inventory = InventoryUI(self.groups, self.player.player_data.inventory, self.player)

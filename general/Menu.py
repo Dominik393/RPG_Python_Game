@@ -4,24 +4,24 @@ from Settings import *
 class MainMenu:
     def __init__(self, sound):
         self.display_surface = pygame.display.get_surface()
-        self.background_image = pygame.image.load(join('resources/graphics', 'objects', 'background.png'))
+        self.background_image = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'background.png'))
         self.background_image = pygame.transform.scale(self.background_image, (WINDOW_WIDTH, WINDOW_HEIGHT))
 
         self.button_images = [
-            pygame.image.load(join('resources/graphics', 'objects', 'button_play.png')).convert_alpha(),
-            pygame.image.load(join('resources/graphics', 'objects', 'button_save.png')).convert_alpha(),
-            pygame.image.load(join('resources/graphics', 'objects', 'button_load.png')).convert_alpha(),
-            pygame.image.load(join('resources/graphics', 'objects', 'button_exit.png')).convert_alpha()
+            pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'button_play.png')).convert_alpha(),
+            pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'button_save.png')).convert_alpha(),
+            pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'button_load.png')).convert_alpha(),
+            pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'button_exit.png')).convert_alpha()
         ]
 
         self.button_images_bigger = [
-            pygame.image.load(join('resources/graphics', 'objects', 'button_play_bigger.png')).convert_alpha(),
-            pygame.image.load(join('resources/graphics', 'objects', 'button_save_bigger.png')).convert_alpha(),
-            pygame.image.load(join('resources/graphics', 'objects', 'button_load_bigger.png')).convert_alpha(),
-            pygame.image.load(join('resources/graphics', 'objects', 'button_exit_bigger.png')).convert_alpha()
+            pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'button_play_bigger.png')).convert_alpha(),
+            pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'button_save_bigger.png')).convert_alpha(),
+            pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'button_load_bigger.png')).convert_alpha(),
+            pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'button_exit_bigger.png')).convert_alpha()
         ]
 
-        self.logo_image = pygame.image.load(join('resources/graphics', 'objects', 'logo.png')).convert_alpha()
+        self.logo_image = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'logo.png')).convert_alpha()
         self.logo_rect = self.logo_image.get_rect(center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 6))
 
         self.options = ['Play', 'Save', 'Load', 'Exit']

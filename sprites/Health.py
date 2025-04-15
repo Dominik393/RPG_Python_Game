@@ -8,7 +8,7 @@ class Health(pygame.sprite.Sprite):
         self.image = pygame.Surface((64, 57))
         self.rect = self.image.get_rect(topleft=pos)
 
-        self.image = pygame.image.load(join('resources/graphics', 'objects', 'health.png'))
+        self.image = pygame.image.load(join('..', 'resources', 'graphics', 'objects', 'health.png')).convert_alpha()
         self.player = player
 
     def update(self, dt):

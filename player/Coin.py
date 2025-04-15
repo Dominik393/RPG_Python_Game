@@ -11,7 +11,7 @@ class Coin(pygame.sprite.Sprite):
 
         self.old_rect = self.rect.copy()
 
-        my_spritesheet = SpritesSheet(f'resources/graphics/objects/coins/texture.png')
+        my_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'objects', 'coins', 'texture.png'))
         self.sprite_positions = [my_spritesheet.parse_sprite('1.png'), my_spritesheet.parse_sprite('2.png'),
                                  my_spritesheet.parse_sprite('3.png'), my_spritesheet.parse_sprite('4.png'),
                                  my_spritesheet.parse_sprite('5.png'), my_spritesheet.parse_sprite('6.png'),

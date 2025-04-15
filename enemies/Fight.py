@@ -24,14 +24,14 @@ def is_enemy_dead(enemy):
 
 
 def display_player(player, display_surface):
-    my_spritesheet = SpritesSheet(join('resources/graphics', 'player', f'{player.skin}', 'texture.png'))
+    my_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'player', f'{player.skin}', 'texture.png'))
     sprite_down = my_spritesheet.parse_sprite('8.png')
     skin_view = pygame.transform.scale(sprite_down, (200, 200))
     display_surface.blit(skin_view, (150, 300))
 
 
 def display_enemy(enemy, display_surface):
-    enemy_spritesheet = SpritesSheet(join(f'resources/graphics/enemies/{enemy.name}/texture.png'))
+    enemy_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'enemies', f'{enemy.name}', 'texture.png'))
     sprite_right = enemy_spritesheet.parse_sprite('5.png')
     skin_view_right = pygame.transform.scale(sprite_right, (200, 200))
     display_surface.blit(skin_view_right, (WINDOW_WIDTH - 350, 300))
@@ -134,13 +134,13 @@ def create_buttons():
 
 def attack_animation(player, enemy, display_surface, enemy_dead):
     # Load player and enemy sprites
-    player_spritesheet = SpritesSheet(join('resources/graphics', 'player', f'{player.skin}', 'texture.png'))
-    enemy_spritesheet = SpritesSheet(join(f'resources/graphics/enemies/{enemy.name}/texture.png'))
+    player_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'player', f'{player.skin}', 'texture.png'))
+    enemy_spritesheet = SpritesSheet(join('..', 'resources', 'graphics', 'enemies', f'{enemy.name}', 'texture.png'))
     player_right = player_spritesheet.parse_sprite('8.png')
     enemy_right = enemy_spritesheet.parse_sprite('5.png')
     player_right = pygame.transform.scale(player_right, (200, 200))
     enemy_right = pygame.transform.scale(enemy_right, (200, 200))
-    background_image = pygame.image.load('resources/graphics/map/background/village.png').convert()
+    background_image = pygame.image.load(join('..', 'resources', 'graphics', 'map', 'background', 'village.png')).convert()
 
     player_pos = (150 - 4, 300 - 4)
     enemy_pos = (WINDOW_WIDTH - 350 - 4, 300 - 4)
@@ -264,7 +264,7 @@ def confirm_enemy_death(enemy, player):
 def fight(enemy, player, dt):
     display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     clock = pygame.time.Clock()
-    background_image = pygame.image.load('resources/graphics/map/background/village.png').convert()
+    background_image = pygame.image.load(join('..', 'resources', 'graphics', 'map', 'background', 'village.png')).convert()
 
     # Create buttons
     buttons = create_buttons()
