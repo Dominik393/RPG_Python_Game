@@ -4,7 +4,7 @@ Python project, carried out in the 4th semester of studies at AGH.
 
 1) Team members: 
    - Stas Kochevenko | skochevenko@student.agh.edu.pl
-   - Jan Dróżdż
+   - Dominik Dróżdż
 
 2) Project topic: 
    - Python RPG Game Magic Valley (fights, completing quests, shop etc)
